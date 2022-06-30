@@ -600,25 +600,35 @@ class TokenPose_L_base(nn.Module):
 
 class TokenPose_B(nn.Module):
 
-    def __init__(self, cfg, **kwargs):
+    def __init__(self, **kwargs):
 
-        extra = cfg.MODEL.EXTRA
+        #extra = cfg.MODEL.EXTRA
 
         super(TokenPose_B, self).__init__()
 
-        print(cfg.MODEL)
+        #print(cfg.MODEL)
         ##################################################
         self.pre_feature = get_pose_net(**kwargs)
-        self.transformer = TokenPose_TB_base(feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
-                                 num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
-                                 channels=cfg.MODEL.BASE_CHANNEL,
-                                 depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
-                                 mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
-                                 apply_init=cfg.MODEL.INIT,
-                                 hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
-                                 heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
-                                 heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
-                                 pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE)
+        self.transformer = TokenPose_TB_base(#feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
+                                 feature_size=[256//4,192//4],patch_size=[4,3],
+                                 #num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
+                                 num_keypoints = 17, dim =192,
+                                 #channels=cfg.MODEL.BASE_CHANNEL,
+                                 channnels=48,
+                                 #depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
+                                 depth=8,heads=12,
+                                 #mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
+                                 mlp_dim = 192*3,
+                                 #apply_init=cfg.MODEL.INIT,
+                                 apply_init=True,
+                                 #hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
+                                 hidden_heatmap_dim=64*48//8,
+                                 #heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
+                                 heatmap_dim=64*48,
+                                 #heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
+                                 heatmap_size=[64,48],
+                                 #pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE
+                                 pos_embedding_type="sine-full")
         ###################################################3
 
     def forward(self, x):
@@ -639,25 +649,35 @@ def get_tokenpose_B(is_train=True, **kwargs):
 
 class TokenPose_L(nn.Module):
 
-    def __init__(self, cfg, **kwargs):
+    def __init__(self, **kwargs):
 
-        extra = cfg.MODEL.EXTRA
+        #extra = cfg.MODEL.EXTRA
 
         super(TokenPose_L, self).__init__()
 
-        print(cfg.MODEL)
+        #print(cfg.MODEL)
         ##################################################
-        self.pre_feature = HRNET_base(cfg,**kwargs)
-        self.transformer = TokenPose_L_base(feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
-                            num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
-                            channels=cfg.MODEL.BASE_CHANNEL,
-                            depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
-                            mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
-                            apply_init=cfg.MODEL.INIT,
-                            hidden_heatmap_dim=cfg.MODEL.HIDDEN_HEATMAP_DIM,
-                            heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
-                            heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
-                            pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE)
+        self.pre_feature = get_pose_net(**kwargs)
+        self.transformer = TokenPose_L_base(#feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
+                                 feature_size=[256//4,192//4],patch_size=[4,3],
+                                 #num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
+                                 num_keypoints = 17, dim =192,
+                                 #channels=cfg.MODEL.BASE_CHANNEL,
+                                 channnels=48,
+                                 #depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
+                                 depth=8,heads=12,
+                                 #mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
+                                 mlp_dim = 192*3,
+                                 #apply_init=cfg.MODEL.INIT,
+                                 apply_init=True,
+                                 #hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
+                                 hidden_heatmap_dim=64*48//8,
+                                 #heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
+                                 heatmap_dim=64*48,
+                                 #heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
+                                 heatmap_size=[64,48],
+                                 #pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE
+                                 pos_embedding_type="sine-full")
         ###################################################3
 
     def forward(self, x):
@@ -669,32 +689,42 @@ class TokenPose_L(nn.Module):
         self.pre_feature.init_weights(pretrained)
 
 
-def get_pose_net(cfg, is_train, **kwargs):
+def get_tokenpose_L(is_train, **kwargs):
     model = TokenPose_L(cfg, **kwargs)
-    if is_train and cfg.MODEL.INIT_WEIGHTS:
-        model.init_weights(cfg.MODEL.PRETRAINED,cfg)
+    if is_train:
+        model.init_weights('models/pytorch/imagenet/hrnet_w48-8ef0771d.pth')
     return model
 
 class TokenPose_S(nn.Module):
 
-    def __init__(self, cfg, **kwargs):
+    def __init__(self, **kwargs):
 
-        extra = cfg.MODEL.EXTRA
+        #extra = cfg.MODEL.EXTRA
 
         super(TokenPose_S, self).__init__()
 
-        print(cfg.MODEL)
+        #print(cfg.MODEL)
         ##################################################
-        self.features = TokenPose_S_base(image_size=[cfg.MODEL.IMAGE_SIZE[1],cfg.MODEL.IMAGE_SIZE[0]],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
-                                 num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
-                                 channels=256,
-                                 depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
-                                 mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
-                                 apply_init=cfg.MODEL.INIT,
-                                 hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
-                                 heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
-                                 heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
-                                 pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE)
+        self.features = TokenPose_S_base(#feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
+                                 feature_size=[256//4,192//4],patch_size=[4,3],
+                                 #num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
+                                 num_keypoints = 17, dim =192,
+                                 #channels=cfg.MODEL.BASE_CHANNEL,
+                                 channnels=48,
+                                 #depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
+                                 depth=8,heads=12,
+                                 #mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
+                                 mlp_dim = 192*3,
+                                 #apply_init=cfg.MODEL.INIT,
+                                 apply_init=True,
+                                 #hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
+                                 hidden_heatmap_dim=64*48//8,
+                                 #heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
+                                 heatmap_dim=64*48,
+                                 #heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
+                                 heatmap_size=[64,48],
+                                 #pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE
+                                 pos_embedding_type="sine-full")
         ###################################################3
 
     def forward(self, x):
@@ -736,33 +766,43 @@ class TokenPose_S(nn.Module):
                         nn.init.constant_(m.bias, 0)
 
 
-def get_pose_net(cfg, is_train, **kwargs):
-    model = TokenPose_S(cfg, **kwargs)
-    if is_train and cfg.MODEL.INIT_WEIGHTS:
-        model.init_weights(cfg.MODEL.PRETRAINED)
+def get_tokenpose_S(is_train, **kwargs):
+    model = TokenPose_S(**kwargs)
+    if is_train:
+        model.init_weights('')
 
     return model
 
 class TokenPose_T(nn.Module):
 
-    def __init__(self, cfg, **kwargs):
+    def __init__(self, **kwargs):
 
-        extra = cfg.MODEL.EXTRA
+        #extra = cfg.MODEL.EXTRA
 
         super(TokenPose_T, self).__init__()
 
-        print(cfg.MODEL)
+        #print(cfg.MODEL)
         ##################################################
-        self.transformer = TokenPose_TB_base(feature_size=[cfg.MODEL.IMAGE_SIZE[1],cfg.MODEL.IMAGE_SIZE[0]],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
-                                 num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
-                                 channels=cfg.MODEL.BASE_CHANNEL,
-                                 depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
-                                 mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
-                                 apply_init=cfg.MODEL.INIT,
-                                 hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
-                                 heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
-                                 heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
-                                 pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE)
+        self.transformer = TokenPose_TB_base(#feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
+                                 feature_size=[256//4,192//4],patch_size=[4,3],
+                                 #num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
+                                 num_keypoints = 17, dim =192,
+                                 #channels=cfg.MODEL.BASE_CHANNEL,
+                                 channnels=48,
+                                 #depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
+                                 depth=8,heads=12,
+                                 #mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
+                                 mlp_dim = 192*3,
+                                 #apply_init=cfg.MODEL.INIT,
+                                 apply_init=True,
+                                 #hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
+                                 hidden_heatmap_dim=64*48//8,
+                                 #heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
+                                 heatmap_dim=64*48,
+                                 #heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
+                                 heatmap_size=[64,48],
+                                 #pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE
+                                 pos_embedding_type="sine-full")
         ###################################################3
 
     def forward(self, x):
@@ -773,9 +813,9 @@ class TokenPose_T(nn.Module):
         pass
 
 
-def get_pose_net(cfg, is_train, **kwargs):
-    model = TokenPose_T(cfg, **kwargs)
-    if is_train and cfg.MODEL.INIT_WEIGHTS:
-        model.init_weights(cfg.MODEL.PRETRAINED)
+def get_tokenpose_T(is_train, **kwargs):
+    model = TokenPose_T(**kwargs)
+    if is_train:
+        model.init_weights('')
 
     return model
