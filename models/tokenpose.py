@@ -8,6 +8,7 @@ from einops import rearrange, repeat
 from torch import nn
 from timm.models.layers.weight_init import trunc_normal_
 import math
+from hrnet import get_pose_net
 
 MIN_NUM_PATCHES = 16
 BN_MOMENTUM = 0.1
@@ -442,6 +443,7 @@ class TokenPose_TB_base(nn.Module):
         return x
 
 class TokenPose_L_base(nn.Module):
+    
     def __init__(self, *, feature_size, patch_size, num_keypoints, dim, depth, heads, mlp_dim, apply_init=False, hidden_heatmap_dim=64*6,heatmap_dim=64*48,heatmap_size=[64,48], channels = 3, dropout = 0., emb_dropout = 0.,pos_embedding_type="learnable"):
         super().__init__()
         assert isinstance(feature_size,list) and isinstance(patch_size,list), 'image_size and patch_size should be list'
@@ -595,3 +597,42 @@ class TokenPose_L_base(nn.Module):
         x = rearrange(x,'b c (p1 p2) -> b c p1 p2',p1=self.heatmap_size[0],p2=self.heatmap_size[1])
 
         return x
+
+class TokenPose_B(nn.Module):
+
+    def __init__(self, cfg, **kwargs):
+
+        extra = cfg.MODEL.EXTRA
+
+        super(TokenPose_B, self).__init__()
+
+        print(cfg.MODEL)
+        ##################################################
+        self.pre_feature = get_pose_net(**kwargs)
+        self.transformer = TokenPose_TB_base(feature_size=[cfg.MODEL.IMAGE_SIZE[1]//4,cfg.MODEL.IMAGE_SIZE[0]//4],patch_size=[cfg.MODEL.PATCH_SIZE[1],cfg.MODEL.PATCH_SIZE[0]],
+                                 num_keypoints = cfg.MODEL.NUM_JOINTS,dim =cfg.MODEL.DIM,
+                                 channels=cfg.MODEL.BASE_CHANNEL,
+                                 depth=cfg.MODEL.TRANSFORMER_DEPTH,heads=cfg.MODEL.TRANSFORMER_HEADS,
+                                 mlp_dim = cfg.MODEL.DIM*cfg.MODEL.TRANSFORMER_MLP_RATIO,
+                                 apply_init=cfg.MODEL.INIT,
+                                 hidden_heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0]//8,
+                                 heatmap_dim=cfg.MODEL.HEATMAP_SIZE[1]*cfg.MODEL.HEATMAP_SIZE[0],
+                                 heatmap_size=[cfg.MODEL.HEATMAP_SIZE[1],cfg.MODEL.HEATMAP_SIZE[0]],
+                                 pos_embedding_type=cfg.MODEL.POS_EMBEDDING_TYPE)
+        ###################################################3
+
+    def forward(self, x):
+        x = self.pre_feature(x)
+        x = self.transformer(x)
+        return x
+
+    def init_weights(self, pretrained=''):
+        self.pre_feature.init_weights(pretrained)
+
+
+def get_tokenpose_B(is_train=True, **kwargs):
+    model = TokenPose_B(**kwargs)
+    if is_train:
+        model.init_weights('models/pytorch/imagenet/hrnet_w48-8ef0771d.pth')
+
+    return model
