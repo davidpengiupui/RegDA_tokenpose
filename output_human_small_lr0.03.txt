@@ -1,0 +1,1741 @@
+Namespace(source_root='data/SURREAL', target_root='data/LSP', source='SURREAL', target='LSP', resize_scale=(0.6, 1.3), rotation=180, image_size=256, heatmap_size=64, arch='resnet101', pretrain=None, resume=None, num_head_layers=2, margin=4.0, trade_off=1.0, batch_size=32, lr=0.03, momentum=0.9, wd=0.0001, lr_gamma=0.0001, lr_decay=0.75, lr_step=[45, 60], lr_factor=0.1, workers=4, pretrain_epochs=150, epochs=30, iters_per_epoch=500, print_freq=100, seed=0, log='logs/regda/surreal2lsp', phase='train', debug=True)
+/data/david/RegDA/regda_lr0.03.py:44: UserWarning: You have chosen to seed training. This will turn on the CUDNN deterministic setting, which can slow down your training considerably! You may see unexpected behavior when restarting from checkpoints.
+  warnings.warn('You have chosen to seed training. '
+loading data/SURREAL/train/run0.json
+loading data/SURREAL/train/run1.json
+loading data/SURREAL/train/run2.json
+loading data/SURREAL/test/run0.json
+loading data/SURREAL/test/run1.json
+loading data/SURREAL/test/run2.json
+Source train: 14107
+Target train: 62
+Source test: 100
+Target test: 63
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torchvision/transforms/functional.py:423: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  warnings.warn(
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torchvision/transforms/functional.py:423: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  warnings.warn(
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torchvision/transforms/functional.py:423: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  warnings.warn(
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torchvision/transforms/functional.py:423: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  warnings.warn(
+Pretraining the model on source domain.
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torch/optim/lr_scheduler.py:131: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn("Detected call of `lr_scheduler.step()` before `optimizer.step()`. "
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torch/optim/lr_scheduler.py:418: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+[0.003, 0.03, 0.03]
+Epoch: [0][  0/500]	Time 1.99 (1.99)	Data 0.0 (0.0)	Loss (s) 4.10e+00 (4.10e+00)	Acc (s) 0.03 (0.03)
+Epoch: [0][100/500]	Time 0.20 (0.22)	Data 0.0 (0.0)	Loss (s) 2.56e+00 (2.97e+00)	Acc (s) 0.13 (0.10)
+Epoch: [0][200/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.48e+00 (2.51e+00)	Acc (s) 0.49 (0.19)
+Epoch: [0][300/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.45e+00 (2.12e+00)	Acc (s) 0.44 (0.29)
+Epoch: [0][400/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 9.35e-01 (1.86e+00)	Acc (s) 0.61 (0.35)
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torchvision/transforms/functional.py:423: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  warnings.warn(
+Test: [  0/100]	Time  0.368 ( 0.368)	Loss 7.72e-01 (7.72e-01)	all 0.55 (0.55)
+Source: 0.5648286290322581 best: 0.5648286290322581
+[0.003, 0.03, 0.03]
+Epoch: [1][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 7.90e-01 (7.90e-01)	Acc (s) 0.64 (0.64)
+Epoch: [1][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 8.96e-01 (8.53e-01)	Acc (s) 0.62 (0.62)
+Epoch: [1][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 8.02e-01 (8.38e-01)	Acc (s) 0.63 (0.62)
+Epoch: [1][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 7.71e-01 (8.23e-01)	Acc (s) 0.62 (0.63)
+Epoch: [1][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 7.83e-01 (8.13e-01)	Acc (s) 0.63 (0.63)
+Test: [  0/100]	Time  0.172 ( 0.172)	Loss 6.46e-01 (6.46e-01)	all 0.58 (0.58)
+Source: 0.6095194892473119 best: 0.6095194892473119
+[0.003, 0.03, 0.03]
+Epoch: [2][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 6.26e-01 (6.26e-01)	Acc (s) 0.69 (0.69)
+Epoch: [2][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 7.10e-01 (7.24e-01)	Acc (s) 0.66 (0.66)
+Epoch: [2][200/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 7.51e-01 (7.27e-01)	Acc (s) 0.65 (0.65)
+Epoch: [2][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.50e-01 (7.18e-01)	Acc (s) 0.68 (0.66)
+Epoch: [2][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 7.40e-01 (7.11e-01)	Acc (s) 0.66 (0.66)
+Test: [  0/100]	Time  0.195 ( 0.195)	Loss 5.87e-01 (5.87e-01)	all 0.59 (0.59)
+Source: 0.6143346774193545 best: 0.6143346774193545
+[0.003, 0.03, 0.03]
+Epoch: [3][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 6.85e-01 (6.85e-01)	Acc (s) 0.67 (0.67)
+Epoch: [3][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.11e-01 (6.73e-01)	Acc (s) 0.66 (0.66)
+Epoch: [3][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.59e-01 (6.68e-01)	Acc (s) 0.65 (0.67)
+Epoch: [3][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.53e-01 (6.67e-01)	Acc (s) 0.66 (0.67)
+Epoch: [3][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.64e-01 (6.67e-01)	Acc (s) 0.71 (0.67)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 5.75e-01 (5.75e-01)	all 0.60 (0.60)
+Source: 0.6098815524193547 best: 0.6143346774193545
+[0.003, 0.03, 0.03]
+Epoch: [4][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.95e-01 (5.95e-01)	Acc (s) 0.69 (0.69)
+Epoch: [4][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.26e-01 (6.56e-01)	Acc (s) 0.68 (0.67)
+Epoch: [4][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.28e-01 (6.46e-01)	Acc (s) 0.67 (0.67)
+Epoch: [4][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 6.71e-01 (6.43e-01)	Acc (s) 0.65 (0.67)
+Epoch: [4][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 7.53e-01 (6.43e-01)	Acc (s) 0.64 (0.67)
+Test: [  0/100]	Time  0.207 ( 0.207)	Loss 5.46e-01 (5.46e-01)	all 0.63 (0.63)
+Source: 0.6204821908602152 best: 0.6204821908602152
+[0.003, 0.03, 0.03]
+Epoch: [5][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.98e-01 (5.98e-01)	Acc (s) 0.70 (0.70)
+Epoch: [5][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 7.92e-01 (6.29e-01)	Acc (s) 0.63 (0.67)
+Epoch: [5][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.18e-01 (6.27e-01)	Acc (s) 0.67 (0.67)
+Epoch: [5][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.59e-01 (6.24e-01)	Acc (s) 0.68 (0.68)
+Epoch: [5][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.19e-01 (6.22e-01)	Acc (s) 0.68 (0.68)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 5.33e-01 (5.33e-01)	all 0.62 (0.62)
+Source: 0.6324621975806454 best: 0.6324621975806454
+[0.003, 0.03, 0.03]
+Epoch: [6][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.47e-01 (6.47e-01)	Acc (s) 0.68 (0.68)
+Epoch: [6][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.75e-01 (6.08e-01)	Acc (s) 0.68 (0.68)
+Epoch: [6][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 7.33e-01 (6.05e-01)	Acc (s) 0.66 (0.69)
+Epoch: [6][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.61e-01 (5.98e-01)	Acc (s) 0.77 (0.69)
+Epoch: [6][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 6.10e-01 (5.86e-01)	Acc (s) 0.72 (0.70)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 4.24e-01 (4.24e-01)	all 0.72 (0.72)
+Source: 0.7137936827956985 best: 0.7137936827956985
+[0.003, 0.03, 0.03]
+Epoch: [7][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.43e-01 (5.43e-01)	Acc (s) 0.74 (0.74)
+Epoch: [7][100/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 5.84e-01 (5.20e-01)	Acc (s) 0.72 (0.74)
+Epoch: [7][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.34e-01 (5.15e-01)	Acc (s) 0.77 (0.75)
+Epoch: [7][300/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 4.09e-01 (5.11e-01)	Acc (s) 0.79 (0.75)
+Epoch: [7][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.02e-01 (5.08e-01)	Acc (s) 0.71 (0.75)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 3.82e-01 (3.82e-01)	all 0.73 (0.73)
+Source: 0.7317153897849462 best: 0.7317153897849462
+[0.003, 0.03, 0.03]
+Epoch: [8][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.19e-01 (4.19e-01)	Acc (s) 0.77 (0.77)
+Epoch: [8][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 6.62e-01 (4.89e-01)	Acc (s) 0.70 (0.76)
+Epoch: [8][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.97e-01 (4.88e-01)	Acc (s) 0.79 (0.76)
+Epoch: [8][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.99e-01 (4.80e-01)	Acc (s) 0.78 (0.76)
+Epoch: [8][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.87e-01 (4.74e-01)	Acc (s) 0.80 (0.77)
+Test: [  0/100]	Time  0.184 ( 0.184)	Loss 3.41e-01 (3.41e-01)	all 0.76 (0.76)
+Source: 0.7655157930107529 best: 0.7655157930107529
+[0.003, 0.03, 0.03]
+Epoch: [9][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.50e-01 (4.50e-01)	Acc (s) 0.79 (0.79)
+Epoch: [9][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.45e-01 (4.33e-01)	Acc (s) 0.81 (0.79)
+Epoch: [9][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.45e-01 (4.30e-01)	Acc (s) 0.80 (0.79)
+Epoch: [9][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.36e-01 (4.32e-01)	Acc (s) 0.79 (0.79)
+Epoch: [9][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 4.47e-01 (4.33e-01)	Acc (s) 0.78 (0.79)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 3.28e-01 (3.28e-01)	all 0.76 (0.76)
+Source: 0.7662726814516128 best: 0.7662726814516128
+[0.003, 0.03, 0.03]
+Epoch: [10][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 5.54e-01 (5.54e-01)	Acc (s) 0.75 (0.75)
+Epoch: [10][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.81e-01 (4.23e-01)	Acc (s) 0.81 (0.79)
+Epoch: [10][200/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 4.26e-01 (4.20e-01)	Acc (s) 0.78 (0.79)
+Epoch: [10][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.02e-01 (4.17e-01)	Acc (s) 0.79 (0.79)
+Epoch: [10][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.15e-01 (4.13e-01)	Acc (s) 0.79 (0.79)
+Test: [  0/100]	Time  0.202 ( 0.202)	Loss 3.10e-01 (3.10e-01)	all 0.76 (0.76)
+Source: 0.7712987231182795 best: 0.7712987231182795
+[0.003, 0.03, 0.03]
+Epoch: [11][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 3.81e-01 (3.81e-01)	Acc (s) 0.80 (0.80)
+Epoch: [11][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.57e-01 (3.94e-01)	Acc (s) 0.80 (0.80)
+Epoch: [11][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.19e-01 (3.99e-01)	Acc (s) 0.79 (0.80)
+Epoch: [11][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.28e-01 (3.95e-01)	Acc (s) 0.80 (0.80)
+Epoch: [11][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.01e-01 (3.90e-01)	Acc (s) 0.83 (0.80)
+Test: [  0/100]	Time  0.171 ( 0.171)	Loss 3.42e-01 (3.42e-01)	all 0.75 (0.75)
+Source: 0.7671320564516131 best: 0.7712987231182795
+[0.003, 0.03, 0.03]
+Epoch: [12][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.59e-01 (3.59e-01)	Acc (s) 0.82 (0.82)
+Epoch: [12][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.47e-01 (3.82e-01)	Acc (s) 0.77 (0.81)
+Epoch: [12][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.97e-01 (3.73e-01)	Acc (s) 0.84 (0.81)
+Epoch: [12][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.95e-01 (3.71e-01)	Acc (s) 0.84 (0.81)
+Epoch: [12][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.08e-01 (3.69e-01)	Acc (s) 0.82 (0.81)
+Test: [  0/100]	Time  0.172 ( 0.172)	Loss 2.77e-01 (2.77e-01)	all 0.77 (0.77)
+Source: 0.7892439516129035 best: 0.7892439516129035
+[0.003, 0.03, 0.03]
+Epoch: [13][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 5.17e-01 (5.17e-01)	Acc (s) 0.77 (0.77)
+Epoch: [13][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.10e-01 (3.66e-01)	Acc (s) 0.85 (0.82)
+Epoch: [13][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.63e-01 (3.66e-01)	Acc (s) 0.83 (0.82)
+Epoch: [13][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.73e-01 (3.67e-01)	Acc (s) 0.83 (0.82)
+Epoch: [13][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.20e-01 (3.63e-01)	Acc (s) 0.81 (0.82)
+Test: [  0/100]	Time  0.209 ( 0.209)	Loss 2.85e-01 (2.85e-01)	all 0.80 (0.80)
+Source: 0.8145287298387096 best: 0.8145287298387096
+[0.003, 0.03, 0.03]
+Epoch: [14][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.65e-01 (3.65e-01)	Acc (s) 0.85 (0.85)
+Epoch: [14][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.94e-01 (3.50e-01)	Acc (s) 0.83 (0.83)
+Epoch: [14][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.01e-01 (3.50e-01)	Acc (s) 0.80 (0.83)
+Epoch: [14][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.75e-01 (3.49e-01)	Acc (s) 0.83 (0.83)
+Epoch: [14][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.44e-01 (3.48e-01)	Acc (s) 0.82 (0.83)
+Test: [  0/100]	Time  0.207 ( 0.207)	Loss 2.63e-01 (2.63e-01)	all 0.82 (0.82)
+Source: 0.8259080981182801 best: 0.8259080981182801
+[0.003, 0.03, 0.03]
+Epoch: [15][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 4.19e-01 (4.19e-01)	Acc (s) 0.84 (0.84)
+Epoch: [15][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.94e-01 (3.36e-01)	Acc (s) 0.86 (0.84)
+Epoch: [15][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.16e-01 (3.39e-01)	Acc (s) 0.87 (0.84)
+Epoch: [15][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.85e-01 (3.41e-01)	Acc (s) 0.86 (0.84)
+Epoch: [15][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.35e-01 (3.40e-01)	Acc (s) 0.85 (0.85)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 2.73e-01 (2.73e-01)	all 0.83 (0.83)
+Source: 0.8358324932795701 best: 0.8358324932795701
+[0.003, 0.03, 0.03]
+Epoch: [16][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.75e-01 (3.75e-01)	Acc (s) 0.84 (0.84)
+Epoch: [16][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.25e-01 (3.31e-01)	Acc (s) 0.84 (0.85)
+Epoch: [16][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.91e-01 (3.28e-01)	Acc (s) 0.88 (0.85)
+Epoch: [16][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.78e-01 (3.29e-01)	Acc (s) 0.87 (0.85)
+Epoch: [16][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.44e-01 (3.30e-01)	Acc (s) 0.84 (0.85)
+Test: [  0/100]	Time  0.188 ( 0.188)	Loss 2.65e-01 (2.65e-01)	all 0.82 (0.82)
+Source: 0.8221849798387098 best: 0.8358324932795701
+[0.003, 0.03, 0.03]
+Epoch: [17][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.98e-01 (2.98e-01)	Acc (s) 0.86 (0.86)
+Epoch: [17][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.49e-01 (3.30e-01)	Acc (s) 0.82 (0.85)
+Epoch: [17][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 3.13e-01 (3.26e-01)	Acc (s) 0.85 (0.86)
+Epoch: [17][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.18e-01 (3.22e-01)	Acc (s) 0.86 (0.86)
+Epoch: [17][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.04e-01 (3.21e-01)	Acc (s) 0.88 (0.86)
+Test: [  0/100]	Time  0.195 ( 0.195)	Loss 2.45e-01 (2.45e-01)	all 0.87 (0.87)
+Source: 0.8598941532258063 best: 0.8598941532258063
+[0.003, 0.03, 0.03]
+Epoch: [18][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.05e-01 (3.05e-01)	Acc (s) 0.86 (0.86)
+Epoch: [18][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 4.33e-01 (3.28e-01)	Acc (s) 0.81 (0.87)
+Epoch: [18][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.20e-01 (3.26e-01)	Acc (s) 0.87 (0.86)
+Epoch: [18][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.77e-01 (3.25e-01)	Acc (s) 0.87 (0.86)
+Epoch: [18][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.17e-01 (3.22e-01)	Acc (s) 0.88 (0.87)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 2.28e-01 (2.28e-01)	all 0.89 (0.89)
+Source: 0.8715347782258068 best: 0.8715347782258068
+[0.003, 0.03, 0.03]
+Epoch: [19][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.05e-01 (4.05e-01)	Acc (s) 0.84 (0.84)
+Epoch: [19][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 3.09e-01 (3.18e-01)	Acc (s) 0.89 (0.87)
+Epoch: [19][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.19e-01 (3.20e-01)	Acc (s) 0.85 (0.87)
+Epoch: [19][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.64e-01 (3.20e-01)	Acc (s) 0.90 (0.87)
+Epoch: [19][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 3.58e-01 (3.20e-01)	Acc (s) 0.87 (0.87)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 2.27e-01 (2.27e-01)	all 0.85 (0.85)
+Source: 0.8498160282258067 best: 0.8715347782258068
+[0.003, 0.03, 0.03]
+Epoch: [20][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.16e-01 (3.16e-01)	Acc (s) 0.89 (0.89)
+Epoch: [20][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.61e-01 (3.23e-01)	Acc (s) 0.89 (0.88)
+Epoch: [20][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 3.00e-01 (3.16e-01)	Acc (s) 0.89 (0.88)
+Epoch: [20][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.48e-01 (3.13e-01)	Acc (s) 0.90 (0.88)
+Epoch: [20][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.36e-01 (3.13e-01)	Acc (s) 0.91 (0.88)
+Test: [  0/100]	Time  0.225 ( 0.225)	Loss 2.28e-01 (2.28e-01)	all 0.88 (0.88)
+Source: 0.871638944892473 best: 0.871638944892473
+[0.003, 0.03, 0.03]
+Epoch: [21][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.48e-01 (3.48e-01)	Acc (s) 0.87 (0.87)
+Epoch: [21][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.92e-01 (3.04e-01)	Acc (s) 0.90 (0.89)
+Epoch: [21][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.80e-01 (2.98e-01)	Acc (s) 0.90 (0.89)
+Epoch: [21][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.06e-01 (2.99e-01)	Acc (s) 0.89 (0.89)
+Epoch: [21][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.60e-01 (2.97e-01)	Acc (s) 0.90 (0.89)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 2.20e-01 (2.20e-01)	all 0.89 (0.89)
+Source: 0.8886710349462362 best: 0.8886710349462362
+[0.003, 0.03, 0.03]
+Epoch: [22][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.81e-01 (2.81e-01)	Acc (s) 0.90 (0.90)
+Epoch: [22][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.66e-01 (2.88e-01)	Acc (s) 0.91 (0.90)
+Epoch: [22][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.43e-01 (2.90e-01)	Acc (s) 0.89 (0.90)
+Epoch: [22][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.12e-01 (2.91e-01)	Acc (s) 0.91 (0.90)
+Epoch: [22][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.83e-01 (2.89e-01)	Acc (s) 0.90 (0.90)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 2.07e-01 (2.07e-01)	all 0.90 (0.90)
+Source: 0.8936701948924731 best: 0.8936701948924731
+[0.003, 0.03, 0.03]
+Epoch: [23][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.28e-01 (3.28e-01)	Acc (s) 0.92 (0.92)
+Epoch: [23][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 4.27e-01 (2.93e-01)	Acc (s) 0.87 (0.90)
+Epoch: [23][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.01e-01 (2.95e-01)	Acc (s) 0.90 (0.90)
+Epoch: [23][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.63e-01 (2.95e-01)	Acc (s) 0.92 (0.90)
+Epoch: [23][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.74e-01 (2.95e-01)	Acc (s) 0.91 (0.90)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 2.11e-01 (2.11e-01)	all 0.92 (0.92)
+Source: 0.9096606182795699 best: 0.9096606182795699
+[0.003, 0.03, 0.03]
+Epoch: [24][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 3.01e-01 (3.01e-01)	Acc (s) 0.91 (0.91)
+Epoch: [24][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.69e-01 (2.87e-01)	Acc (s) 0.92 (0.91)
+Epoch: [24][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 4.04e-01 (2.89e-01)	Acc (s) 0.88 (0.91)
+Epoch: [24][300/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 2.58e-01 (2.88e-01)	Acc (s) 0.92 (0.91)
+Epoch: [24][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.78e-01 (2.87e-01)	Acc (s) 0.92 (0.91)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 2.28e-01 (2.28e-01)	all 0.90 (0.90)
+Source: 0.9001537298387098 best: 0.9096606182795699
+[0.003, 0.03, 0.03]
+Epoch: [25][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.32e-01 (2.32e-01)	Acc (s) 0.94 (0.94)
+Epoch: [25][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.28e-01 (2.79e-01)	Acc (s) 0.87 (0.92)
+Epoch: [25][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.94e-01 (2.81e-01)	Acc (s) 0.92 (0.92)
+Epoch: [25][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.08e-01 (2.83e-01)	Acc (s) 0.90 (0.92)
+Epoch: [25][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.27e-01 (2.82e-01)	Acc (s) 0.94 (0.92)
+Test: [  0/100]	Time  0.182 ( 0.182)	Loss 2.24e-01 (2.24e-01)	all 0.92 (0.92)
+Source: 0.9173681115591404 best: 0.9173681115591404
+[0.003, 0.03, 0.03]
+Epoch: [26][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.75e-01 (3.75e-01)	Acc (s) 0.89 (0.89)
+Epoch: [26][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.95e-01 (2.84e-01)	Acc (s) 0.92 (0.92)
+Epoch: [26][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.54e-01 (2.80e-01)	Acc (s) 0.96 (0.92)
+Epoch: [26][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.55e-01 (2.82e-01)	Acc (s) 0.90 (0.92)
+Epoch: [26][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.91e-01 (2.79e-01)	Acc (s) 0.89 (0.92)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 2.16e-01 (2.16e-01)	all 0.91 (0.91)
+Source: 0.9216397849462368 best: 0.9216397849462368
+[0.003, 0.03, 0.03]
+Epoch: [27][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.21e-01 (2.21e-01)	Acc (s) 0.94 (0.94)
+Epoch: [27][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.25e-01 (2.79e-01)	Acc (s) 0.89 (0.92)
+Epoch: [27][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.79e-01 (2.81e-01)	Acc (s) 0.91 (0.92)
+Epoch: [27][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.96e-01 (2.76e-01)	Acc (s) 0.94 (0.93)
+Epoch: [27][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.10e-01 (2.75e-01)	Acc (s) 0.91 (0.93)
+Test: [  0/100]	Time  0.408 ( 0.408)	Loss 2.00e-01 (2.00e-01)	all 0.93 (0.93)
+Source: 0.9348689516129027 best: 0.9348689516129027
+[0.003, 0.03, 0.03]
+Epoch: [28][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.69e-01 (2.69e-01)	Acc (s) 0.92 (0.92)
+Epoch: [28][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.25e-01 (2.77e-01)	Acc (s) 0.96 (0.93)
+Epoch: [28][200/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 3.35e-01 (2.74e-01)	Acc (s) 0.91 (0.93)
+Epoch: [28][300/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 2.37e-01 (2.72e-01)	Acc (s) 0.94 (0.93)
+Epoch: [28][400/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.80e-01 (2.75e-01)	Acc (s) 0.92 (0.93)
+Test: [  0/100]	Time  0.333 ( 0.333)	Loss 1.93e-01 (1.93e-01)	all 0.92 (0.92)
+Source: 0.92833249327957 best: 0.9348689516129027
+[0.003, 0.03, 0.03]
+Epoch: [29][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.79e-01 (2.79e-01)	Acc (s) 0.93 (0.93)
+Epoch: [29][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.36e-01 (2.74e-01)	Acc (s) 0.96 (0.93)
+Epoch: [29][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.07e-01 (2.73e-01)	Acc (s) 0.96 (0.93)
+Epoch: [29][300/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 2.59e-01 (2.72e-01)	Acc (s) 0.93 (0.93)
+Epoch: [29][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.79e-01 (2.73e-01)	Acc (s) 0.96 (0.93)
+Test: [  0/100]	Time  0.192 ( 0.192)	Loss 1.98e-01 (1.98e-01)	all 0.93 (0.93)
+Source: 0.9411710349462367 best: 0.9411710349462367
+[0.003, 0.03, 0.03]
+Epoch: [30][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.99e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [30][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (2.64e-01)	Acc (s) 0.97 (0.94)
+Epoch: [30][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (2.60e-01)	Acc (s) 0.98 (0.94)
+Epoch: [30][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.81e-01 (2.63e-01)	Acc (s) 0.94 (0.94)
+Epoch: [30][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.90e-01 (2.63e-01)	Acc (s) 0.93 (0.94)
+Test: [  0/100]	Time  0.177 ( 0.177)	Loss 1.95e-01 (1.95e-01)	all 0.95 (0.95)
+Source: 0.9484358198924732 best: 0.9484358198924732
+[0.003, 0.03, 0.03]
+Epoch: [31][  0/500]	Time 0.22 (0.22)	Data 0.0 (0.0)	Loss (s) 3.59e-01 (3.59e-01)	Acc (s) 0.89 (0.89)
+Epoch: [31][100/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 3.24e-01 (2.67e-01)	Acc (s) 0.92 (0.93)
+Epoch: [31][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.93e-01 (2.66e-01)	Acc (s) 0.97 (0.94)
+Epoch: [31][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.19e-01 (2.64e-01)	Acc (s) 0.95 (0.94)
+Epoch: [31][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.20e-01 (2.64e-01)	Acc (s) 0.95 (0.94)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 1.91e-01 (1.91e-01)	all 0.94 (0.94)
+Source: 0.9486449932795697 best: 0.9486449932795697
+[0.003, 0.03, 0.03]
+Epoch: [32][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.59e-01 (2.59e-01)	Acc (s) 0.93 (0.93)
+Epoch: [32][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.41e-01 (2.66e-01)	Acc (s) 0.95 (0.94)
+Epoch: [32][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.39e-01 (2.63e-01)	Acc (s) 0.95 (0.94)
+Epoch: [32][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (2.60e-01)	Acc (s) 0.97 (0.94)
+Epoch: [32][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.63e-01 (2.61e-01)	Acc (s) 0.94 (0.94)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.82e-01 (1.82e-01)	all 0.96 (0.96)
+Source: 0.9513533266129032 best: 0.9513533266129032
+[0.003, 0.03, 0.03]
+Epoch: [33][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (2.10e-01)	Acc (s) 0.96 (0.96)
+Epoch: [33][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.16e-01 (2.56e-01)	Acc (s) 0.95 (0.94)
+Epoch: [33][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.42e-01 (2.58e-01)	Acc (s) 0.95 (0.94)
+Epoch: [33][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.30e-01 (2.56e-01)	Acc (s) 0.95 (0.94)
+Epoch: [33][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 3.04e-01 (2.55e-01)	Acc (s) 0.93 (0.94)
+Test: [  0/100]	Time  0.213 ( 0.213)	Loss 2.23e-01 (2.23e-01)	all 0.94 (0.94)
+Source: 0.925232694892473 best: 0.9513533266129032
+[0.003, 0.03, 0.03]
+Epoch: [34][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.23e-01 (2.23e-01)	Acc (s) 0.95 (0.95)
+Epoch: [34][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.33e-01 (2.60e-01)	Acc (s) 0.96 (0.94)
+Epoch: [34][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.47e-01 (2.58e-01)	Acc (s) 0.90 (0.94)
+Epoch: [34][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.16e-01 (2.58e-01)	Acc (s) 0.96 (0.94)
+Epoch: [34][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.44e-01 (2.55e-01)	Acc (s) 0.94 (0.94)
+Test: [  0/100]	Time  0.209 ( 0.209)	Loss 1.95e-01 (1.95e-01)	all 0.95 (0.95)
+Source: 0.9536449932795698 best: 0.9536449932795698
+[0.003, 0.03, 0.03]
+Epoch: [35][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.72e-01 (1.72e-01)	Acc (s) 0.98 (0.98)
+Epoch: [35][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.42e-01 (2.46e-01)	Acc (s) 0.94 (0.95)
+Epoch: [35][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.28e-01 (2.53e-01)	Acc (s) 0.96 (0.94)
+Epoch: [35][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.46e-01 (2.55e-01)	Acc (s) 0.93 (0.94)
+Epoch: [35][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.93e-01 (2.55e-01)	Acc (s) 0.93 (0.94)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.87e-01 (1.87e-01)	all 0.93 (0.93)
+Source: 0.9550520833333332 best: 0.9550520833333332
+[0.003, 0.03, 0.03]
+Epoch: [36][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.09e-01 (2.09e-01)	Acc (s) 0.96 (0.96)
+Epoch: [36][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.59e-01 (2.48e-01)	Acc (s) 0.95 (0.95)
+Epoch: [36][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.54e-01 (2.50e-01)	Acc (s) 0.93 (0.95)
+Epoch: [36][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.79e-01 (2.49e-01)	Acc (s) 0.93 (0.95)
+Epoch: [36][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.23e-01 (2.51e-01)	Acc (s) 0.96 (0.95)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.78e-01 (1.78e-01)	all 0.95 (0.95)
+Source: 0.9566389448924734 best: 0.9566389448924734
+[0.003, 0.03, 0.03]
+Epoch: [37][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.20e-01 (2.20e-01)	Acc (s) 0.96 (0.96)
+Epoch: [37][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.61e-01 (2.41e-01)	Acc (s) 0.95 (0.95)
+Epoch: [37][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.86e-01 (2.42e-01)	Acc (s) 0.93 (0.95)
+Epoch: [37][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.39e-01 (2.44e-01)	Acc (s) 0.96 (0.95)
+Epoch: [37][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.08e-01 (2.43e-01)	Acc (s) 0.97 (0.95)
+Test: [  0/100]	Time  0.220 ( 0.220)	Loss 1.63e-01 (1.63e-01)	all 0.96 (0.96)
+Source: 0.9597916666666667 best: 0.9597916666666667
+[0.003, 0.03, 0.03]
+Epoch: [38][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.32e-01 (2.32e-01)	Acc (s) 0.94 (0.94)
+Epoch: [38][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (2.44e-01)	Acc (s) 0.97 (0.95)
+Epoch: [38][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.99e-01 (2.46e-01)	Acc (s) 0.93 (0.95)
+Epoch: [38][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (2.47e-01)	Acc (s) 0.96 (0.95)
+Epoch: [38][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.23e-01 (2.45e-01)	Acc (s) 0.95 (0.95)
+Test: [  0/100]	Time  0.188 ( 0.188)	Loss 1.70e-01 (1.70e-01)	all 0.96 (0.96)
+Source: 0.9588785282258065 best: 0.9597916666666667
+[0.003, 0.03, 0.03]
+Epoch: [39][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.35e-01 (2.35e-01)	Acc (s) 0.95 (0.95)
+Epoch: [39][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.78e-01 (2.44e-01)	Acc (s) 0.93 (0.95)
+Epoch: [39][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.61e-01 (2.45e-01)	Acc (s) 0.95 (0.95)
+Epoch: [39][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.94e-01 (2.48e-01)	Acc (s) 0.92 (0.95)
+Epoch: [39][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.42e-01 (2.46e-01)	Acc (s) 0.95 (0.95)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 1.80e-01 (1.80e-01)	all 0.94 (0.94)
+Source: 0.9577326948924733 best: 0.9597916666666667
+[0.003, 0.03, 0.03]
+Epoch: [40][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.30e-01 (2.30e-01)	Acc (s) 0.95 (0.95)
+Epoch: [40][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.26e-01 (2.47e-01)	Acc (s) 0.96 (0.95)
+Epoch: [40][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (2.48e-01)	Acc (s) 0.95 (0.95)
+Epoch: [40][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (2.45e-01)	Acc (s) 0.96 (0.95)
+Epoch: [40][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.25e-01 (2.44e-01)	Acc (s) 0.95 (0.95)
+Test: [  0/100]	Time  0.201 ( 0.201)	Loss 1.79e-01 (1.79e-01)	all 0.96 (0.96)
+Source: 0.9598941532258065 best: 0.9598941532258065
+[0.003, 0.03, 0.03]
+Epoch: [41][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.83e-01 (2.83e-01)	Acc (s) 0.94 (0.94)
+Epoch: [41][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.66e-01 (2.41e-01)	Acc (s) 0.93 (0.95)
+Epoch: [41][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (2.38e-01)	Acc (s) 0.98 (0.95)
+Epoch: [41][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (2.36e-01)	Acc (s) 0.98 (0.95)
+Epoch: [41][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.63e-01 (2.38e-01)	Acc (s) 0.95 (0.95)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 1.69e-01 (1.69e-01)	all 0.97 (0.97)
+Source: 0.9603385416666665 best: 0.9603385416666665
+[0.003, 0.03, 0.03]
+Epoch: [42][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.47e-01 (2.47e-01)	Acc (s) 0.95 (0.95)
+Epoch: [42][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.14e-01 (2.39e-01)	Acc (s) 0.93 (0.95)
+Epoch: [42][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.67e-01 (2.38e-01)	Acc (s) 0.94 (0.95)
+Epoch: [42][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.32e-01 (2.39e-01)	Acc (s) 0.95 (0.95)
+Epoch: [42][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.58e-01 (2.38e-01)	Acc (s) 0.93 (0.95)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.58e-01 (1.58e-01)	all 0.97 (0.97)
+Source: 0.9642708333333337 best: 0.9642708333333337
+[0.003, 0.03, 0.03]
+Epoch: [43][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.73e-01 (2.73e-01)	Acc (s) 0.94 (0.94)
+Epoch: [43][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.84e-01 (2.25e-01)	Acc (s) 0.96 (0.95)
+Epoch: [43][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.34e-01 (2.30e-01)	Acc (s) 0.94 (0.95)
+Epoch: [43][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.81e-01 (2.31e-01)	Acc (s) 0.97 (0.95)
+Epoch: [43][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (2.30e-01)	Acc (s) 0.96 (0.95)
+Test: [  0/100]	Time  0.193 ( 0.193)	Loss 1.74e-01 (1.74e-01)	all 0.96 (0.96)
+Source: 0.9625772849462365 best: 0.9642708333333337
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [44][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (1.78e-01)	Acc (s) 0.97 (0.97)
+Epoch: [44][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.11e-01 (2.27e-01)	Acc (s) 0.95 (0.95)
+Epoch: [44][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.55e-01 (2.24e-01)	Acc (s) 0.94 (0.95)
+Epoch: [44][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.33e-01 (2.23e-01)	Acc (s) 0.99 (0.95)
+Epoch: [44][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.11e-01 (2.22e-01)	Acc (s) 0.96 (0.95)
+Test: [  0/100]	Time  0.204 ( 0.204)	Loss 1.54e-01 (1.54e-01)	all 0.96 (0.96)
+Source: 0.96640625 best: 0.96640625
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [45][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 3.67e-01 (3.67e-01)	Acc (s) 0.92 (0.92)
+Epoch: [45][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.36e-01 (2.23e-01)	Acc (s) 0.95 (0.95)
+Epoch: [45][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (2.20e-01)	Acc (s) 0.97 (0.96)
+Epoch: [45][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.55e-01 (2.18e-01)	Acc (s) 0.98 (0.96)
+Epoch: [45][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.27e-01 (2.16e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.49e-01 (1.49e-01)	all 0.97 (0.97)
+Source: 0.967109375 best: 0.967109375
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [46][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.73e-01)	Acc (s) 0.98 (0.98)
+Epoch: [46][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.59e-01 (2.14e-01)	Acc (s) 0.98 (0.96)
+Epoch: [46][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.11e-01 (2.12e-01)	Acc (s) 0.96 (0.96)
+Epoch: [46][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.90e-01 (2.13e-01)	Acc (s) 0.92 (0.96)
+Epoch: [46][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.34e-01 (2.13e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.201 ( 0.201)	Loss 1.48e-01 (1.48e-01)	all 0.97 (0.97)
+Source: 0.9679427083333336 best: 0.9679427083333336
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [47][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.31e-01 (2.31e-01)	Acc (s) 0.96 (0.96)
+Epoch: [47][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (2.09e-01)	Acc (s) 0.97 (0.96)
+Epoch: [47][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.08e-01 (2.07e-01)	Acc (s) 0.91 (0.96)
+Epoch: [47][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.06e-01 (2.08e-01)	Acc (s) 0.96 (0.96)
+Epoch: [47][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.59e-01 (2.10e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.341 ( 0.341)	Loss 1.43e-01 (1.43e-01)	all 0.97 (0.97)
+Source: 0.9682031249999998 best: 0.9682031249999998
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [48][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.86e-01)	Acc (s) 0.96 (0.96)
+Epoch: [48][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.37e-01 (2.16e-01)	Acc (s) 0.94 (0.96)
+Epoch: [48][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (2.11e-01)	Acc (s) 0.96 (0.96)
+Epoch: [48][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.38e-01 (2.10e-01)	Acc (s) 0.95 (0.96)
+Epoch: [48][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.71e-01 (2.10e-01)	Acc (s) 0.93 (0.96)
+Test: [  0/100]	Time  0.197 ( 0.197)	Loss 1.43e-01 (1.43e-01)	all 0.97 (0.97)
+Source: 0.9680989583333331 best: 0.9682031249999998
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [49][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (2.04e-01)	Acc (s) 0.96 (0.96)
+Epoch: [49][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.87e-01 (2.09e-01)	Acc (s) 0.96 (0.96)
+Epoch: [49][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (2.07e-01)	Acc (s) 0.97 (0.96)
+Epoch: [49][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.55e-01 (2.06e-01)	Acc (s) 0.97 (0.96)
+Epoch: [49][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.80e-01 (2.06e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.40e-01 (1.40e-01)	all 0.98 (0.98)
+Source: 0.9683593749999997 best: 0.9683593749999997
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [50][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.60e-01 (1.60e-01)	Acc (s) 0.97 (0.97)
+Epoch: [50][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.46e-01 (2.05e-01)	Acc (s) 0.94 (0.96)
+Epoch: [50][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (2.10e-01)	Acc (s) 0.97 (0.96)
+Epoch: [50][300/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 2.21e-01 (2.08e-01)	Acc (s) 0.96 (0.96)
+Epoch: [50][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (2.07e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.40e-01 (1.40e-01)	all 0.98 (0.98)
+Source: 0.9692968749999997 best: 0.9692968749999997
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [51][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.24e-01 (2.24e-01)	Acc (s) 0.94 (0.94)
+Epoch: [51][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.38e-01 (2.07e-01)	Acc (s) 0.96 (0.96)
+Epoch: [51][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.18e-01 (2.07e-01)	Acc (s) 0.91 (0.96)
+Epoch: [51][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (2.03e-01)	Acc (s) 0.96 (0.96)
+Epoch: [51][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (2.04e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.188 ( 0.188)	Loss 1.40e-01 (1.40e-01)	all 0.97 (0.97)
+Source: 0.969661458333333 best: 0.969661458333333
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [52][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.09e-01 (2.09e-01)	Acc (s) 0.95 (0.95)
+Epoch: [52][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (2.06e-01)	Acc (s) 0.95 (0.96)
+Epoch: [52][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.01e-01 (2.07e-01)	Acc (s) 0.96 (0.96)
+Epoch: [52][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.34e-01 (2.09e-01)	Acc (s) 0.96 (0.96)
+Epoch: [52][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (2.06e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.37e-01 (1.37e-01)	all 0.98 (0.98)
+Source: 0.9693489583333331 best: 0.969661458333333
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [53][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.19e-01 (2.19e-01)	Acc (s) 0.94 (0.94)
+Epoch: [53][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (2.05e-01)	Acc (s) 0.96 (0.96)
+Epoch: [53][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.78e-01 (2.07e-01)	Acc (s) 0.92 (0.96)
+Epoch: [53][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.77e-01 (2.08e-01)	Acc (s) 0.97 (0.96)
+Epoch: [53][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.34e-01 (2.06e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.184 ( 0.184)	Loss 1.40e-01 (1.40e-01)	all 0.97 (0.97)
+Source: 0.9696093749999994 best: 0.969661458333333
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [54][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.38e-01 (2.38e-01)	Acc (s) 0.95 (0.95)
+Epoch: [54][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (2.07e-01)	Acc (s) 0.98 (0.96)
+Epoch: [54][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.98e-01 (2.05e-01)	Acc (s) 0.96 (0.96)
+Epoch: [54][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.47e-01 (2.05e-01)	Acc (s) 0.94 (0.96)
+Epoch: [54][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (2.05e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.208 ( 0.208)	Loss 1.41e-01 (1.41e-01)	all 0.98 (0.98)
+Source: 0.9698177083333336 best: 0.9698177083333336
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [55][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.66e-01 (1.66e-01)	Acc (s) 0.97 (0.97)
+Epoch: [55][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.19e-01 (2.04e-01)	Acc (s) 0.96 (0.96)
+Epoch: [55][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (2.03e-01)	Acc (s) 0.97 (0.96)
+Epoch: [55][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.09e-01 (2.04e-01)	Acc (s) 0.96 (0.96)
+Epoch: [55][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.98e-01 (2.03e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.40e-01 (1.40e-01)	all 0.98 (0.98)
+Source: 0.9708333333333333 best: 0.9708333333333333
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [56][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.90e-01)	Acc (s) 0.96 (0.96)
+Epoch: [56][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.71e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Epoch: [56][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.75e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Epoch: [56][300/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (2.02e-01)	Acc (s) 0.97 (0.96)
+Epoch: [56][400/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.340 ( 0.340)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9702864583333332 best: 0.9708333333333333
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [57][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (2.00e-01)	Acc (s) 0.96 (0.96)
+Epoch: [57][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [57][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.68e-01 (2.00e-01)	Acc (s) 0.94 (0.96)
+Epoch: [57][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (2.03e-01)	Acc (s) 0.97 (0.96)
+Epoch: [57][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.44e-01 (2.03e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.204 ( 0.204)	Loss 1.38e-01 (1.38e-01)	all 0.98 (0.98)
+Source: 0.9709374999999996 best: 0.9709374999999996
+[0.00030000000000000003, 0.003, 0.003]
+Epoch: [58][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (2.04e-01)	Acc (s) 0.97 (0.97)
+Epoch: [58][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [58][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.16e-01 (2.03e-01)	Acc (s) 0.96 (0.96)
+Epoch: [58][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.66e-01 (2.02e-01)	Acc (s) 0.97 (0.96)
+Epoch: [58][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.40e-01 (2.01e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.203 ( 0.203)	Loss 1.37e-01 (1.37e-01)	all 0.98 (0.98)
+Source: 0.9702604166666668 best: 0.9709374999999996
+[3.0000000000000005e-06, 3.0000000000000004e-05, 3.0000000000000004e-05]
+Epoch: [59][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.71e-01 (2.71e-01)	Acc (s) 0.94 (0.94)
+Epoch: [59][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.56e-01 (2.05e-01)	Acc (s) 0.98 (0.96)
+Epoch: [59][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.25e-01 (2.08e-01)	Acc (s) 0.95 (0.96)
+Epoch: [59][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.54e-01 (2.09e-01)	Acc (s) 0.98 (0.96)
+Epoch: [59][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.84e-01 (2.06e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.200 ( 0.200)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9707552083333334 best: 0.9709374999999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [60][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (1.83e-01)	Acc (s) 0.97 (0.97)
+Epoch: [60][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.35e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [60][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.93e-01 (2.00e-01)	Acc (s) 0.95 (0.96)
+Epoch: [60][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.44e-01 (2.00e-01)	Acc (s) 0.98 (0.96)
+Epoch: [60][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.81e-01 (2.02e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.210 ( 0.210)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9705729166666669 best: 0.9709374999999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [61][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.21e-01 (2.21e-01)	Acc (s) 0.96 (0.96)
+Epoch: [61][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.81e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [61][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [61][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.09e-01 (2.00e-01)	Acc (s) 0.96 (0.96)
+Epoch: [61][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.377 ( 0.377)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9710677083333334 best: 0.9710677083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [62][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.51e-01 (1.51e-01)	Acc (s) 0.98 (0.98)
+Epoch: [62][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.98e-01)	Acc (s) 0.98 (0.96)
+Epoch: [62][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [62][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [62][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.80e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9713020833333335 best: 0.9713020833333335
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [63][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.56e-01 (2.56e-01)	Acc (s) 0.94 (0.94)
+Epoch: [63][100/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.92e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Epoch: [63][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Epoch: [63][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [63][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.65e-01 (1.98e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.192 ( 0.192)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9707552083333334 best: 0.9713020833333335
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [64][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.46e-01 (2.46e-01)	Acc (s) 0.94 (0.94)
+Epoch: [64][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.65e-01 (1.98e-01)	Acc (s) 0.93 (0.96)
+Epoch: [64][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (1.98e-01)	Acc (s) 0.95 (0.96)
+Epoch: [64][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [64][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.65e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.193 ( 0.193)	Loss 1.38e-01 (1.38e-01)	all 0.98 (0.98)
+Source: 0.9713802083333334 best: 0.9713802083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [65][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.77e-01 (1.77e-01)	Acc (s) 0.97 (0.97)
+Epoch: [65][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Epoch: [65][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.44e-01 (2.00e-01)	Acc (s) 0.99 (0.96)
+Epoch: [65][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (2.00e-01)	Acc (s) 0.96 (0.96)
+Epoch: [65][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.09e-01 (1.99e-01)	Acc (s) 0.92 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.971067708333333 best: 0.9713802083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [66][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.32e-01 (2.32e-01)	Acc (s) 0.94 (0.94)
+Epoch: [66][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.21e-01 (1.98e-01)	Acc (s) 0.95 (0.96)
+Epoch: [66][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [66][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.84e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [66][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.210 ( 0.210)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.971041666666667 best: 0.9713802083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [67][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.58e-01 (2.58e-01)	Acc (s) 0.94 (0.94)
+Epoch: [67][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [67][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.75e-01 (2.01e-01)	Acc (s) 0.97 (0.96)
+Epoch: [67][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.54e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [67][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.66e-01 (1.99e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.221 ( 0.221)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9709635416666664 best: 0.9713802083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [68][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.58e-01 (2.58e-01)	Acc (s) 0.95 (0.95)
+Epoch: [68][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.30e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [68][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.56e-01 (2.00e-01)	Acc (s) 0.98 (0.96)
+Epoch: [68][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.77e-01 (2.02e-01)	Acc (s) 0.93 (0.96)
+Epoch: [68][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.47e-01 (1.99e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.195 ( 0.195)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9708854166666668 best: 0.9713802083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [69][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.65e-01 (2.65e-01)	Acc (s) 0.95 (0.95)
+Epoch: [69][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.01e-01 (2.03e-01)	Acc (s) 0.95 (0.96)
+Epoch: [69][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.21e-01 (2.02e-01)	Acc (s) 0.95 (0.96)
+Epoch: [69][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.64e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Epoch: [69][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.28e-01 (2.00e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.195 ( 0.195)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9709635416666668 best: 0.9713802083333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [70][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.71e-01 (1.71e-01)	Acc (s) 0.98 (0.98)
+Epoch: [70][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Epoch: [70][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (2.03e-01)	Acc (s) 0.97 (0.96)
+Epoch: [70][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (2.03e-01)	Acc (s) 0.96 (0.96)
+Epoch: [70][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.37e-01 (1.37e-01)	all 0.98 (0.98)
+Source: 0.9715364583333327 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [71][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.63e-01 (1.63e-01)	Acc (s) 0.97 (0.97)
+Epoch: [71][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.26e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Epoch: [71][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.53e-01 (1.99e-01)	Acc (s) 0.98 (0.96)
+Epoch: [71][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.64e-01 (2.00e-01)	Acc (s) 0.98 (0.96)
+Epoch: [71][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (2.01e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.178 ( 0.178)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9713541666666663 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [72][  0/500]	Time 0.22 (0.22)	Data 0.0 (0.0)	Loss (s) 2.36e-01 (2.36e-01)	Acc (s) 0.95 (0.95)
+Epoch: [72][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.72e-01 (2.03e-01)	Acc (s) 0.97 (0.96)
+Epoch: [72][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.37e-01 (2.02e-01)	Acc (s) 0.96 (0.96)
+Epoch: [72][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.31e-01 (2.01e-01)	Acc (s) 0.98 (0.96)
+Epoch: [72][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (2.01e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 1.37e-01 (1.37e-01)	all 0.98 (0.98)
+Source: 0.9714322916666666 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [73][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.41e-01 (2.41e-01)	Acc (s) 0.94 (0.94)
+Epoch: [73][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (2.05e-01)	Acc (s) 0.98 (0.96)
+Epoch: [73][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.40e-01 (2.02e-01)	Acc (s) 0.99 (0.96)
+Epoch: [73][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.92e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Epoch: [73][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.98e-01 (2.00e-01)	Acc (s) 0.93 (0.96)
+Test: [  0/100]	Time  0.208 ( 0.208)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9711718750000001 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [74][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.92e-01 (2.92e-01)	Acc (s) 0.94 (0.94)
+Epoch: [74][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.02e-01 (2.04e-01)	Acc (s) 0.97 (0.96)
+Epoch: [74][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Epoch: [74][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Epoch: [74][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (2.00e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.231 ( 0.231)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.971145833333333 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [75][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.62e-01 (1.62e-01)	Acc (s) 0.98 (0.98)
+Epoch: [75][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (1.91e-01)	Acc (s) 0.97 (0.96)
+Epoch: [75][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.56e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [75][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.33e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Epoch: [75][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.97e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9713020833333332 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [76][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.50e-01 (2.50e-01)	Acc (s) 0.94 (0.94)
+Epoch: [76][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.62e-01 (1.97e-01)	Acc (s) 0.98 (0.96)
+Epoch: [76][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [76][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.69e-01 (1.98e-01)	Acc (s) 0.94 (0.96)
+Epoch: [76][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9715104166666666 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [77][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.82e-01)	Acc (s) 0.97 (0.97)
+Epoch: [77][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [77][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.71e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [77][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [77][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.13e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.184 ( 0.184)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.970859375 best: 0.9715364583333327
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [78][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.85e-01)	Acc (s) 0.97 (0.97)
+Epoch: [78][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.98e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Epoch: [78][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.26e-01 (1.97e-01)	Acc (s) 0.95 (0.96)
+Epoch: [78][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.19e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [78][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.74e-01 (1.97e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.192 ( 0.192)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9715885416666664 best: 0.9715885416666664
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [79][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (2.40e-01)	Acc (s) 0.95 (0.95)
+Epoch: [79][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.19e-01 (2.02e-01)	Acc (s) 0.96 (0.96)
+Epoch: [79][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.44e-01 (1.99e-01)	Acc (s) 0.98 (0.96)
+Epoch: [79][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [79][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (1.97e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.971692708333333 best: 0.971692708333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [80][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.59e-01 (1.59e-01)	Acc (s) 0.97 (0.97)
+Epoch: [80][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.97e-01 (2.01e-01)	Acc (s) 0.97 (0.96)
+Epoch: [80][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.93e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [80][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.25e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [80][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.56e-01 (1.95e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.204 ( 0.204)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9715104166666664 best: 0.971692708333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [81][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.99e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [81][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [81][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.15e-01 (1.97e-01)	Acc (s) 0.94 (0.96)
+Epoch: [81][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.52e-01 (1.95e-01)	Acc (s) 0.99 (0.96)
+Epoch: [81][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.211 ( 0.211)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9713020833333331 best: 0.971692708333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [82][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.88e-01)	Acc (s) 0.96 (0.96)
+Epoch: [82][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.35e-01 (1.93e-01)	Acc (s) 0.99 (0.96)
+Epoch: [82][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [82][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.20e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Epoch: [82][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.82e-01 (1.99e-01)	Acc (s) 0.93 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9717708333333337 best: 0.9717708333333337
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [83][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (2.00e-01)	Acc (s) 0.96 (0.96)
+Epoch: [83][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.80e-01 (2.01e-01)	Acc (s) 0.94 (0.96)
+Epoch: [83][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [83][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.58e-01 (2.00e-01)	Acc (s) 0.98 (0.96)
+Epoch: [83][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9713020833333331 best: 0.9717708333333337
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [84][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (1.89e-01)	Acc (s) 0.96 (0.96)
+Epoch: [84][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.06e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [84][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [84][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Epoch: [84][400/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.331 ( 0.331)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9714322916666661 best: 0.9717708333333337
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [85][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.31e-01 (2.31e-01)	Acc (s) 0.94 (0.94)
+Epoch: [85][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [85][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.27e-01 (1.98e-01)	Acc (s) 0.95 (0.96)
+Epoch: [85][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.77e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [85][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.96e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.36e-01 (1.36e-01)	all 0.98 (0.98)
+Source: 0.9717447916666666 best: 0.9717708333333337
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [86][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.92e-01 (1.92e-01)	Acc (s) 0.97 (0.97)
+Epoch: [86][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.98e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [86][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.19e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Epoch: [86][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.70e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Epoch: [86][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.971848958333333 best: 0.971848958333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [87][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [87][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [87][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [87][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.53e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [87][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.77e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9716666666666661 best: 0.971848958333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [88][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.15e-01 (2.15e-01)	Acc (s) 0.96 (0.96)
+Epoch: [88][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.12e-01 (2.01e-01)	Acc (s) 0.95 (0.96)
+Epoch: [88][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.63e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Epoch: [88][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [88][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.14e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.188 ( 0.188)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9716666666666665 best: 0.971848958333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [89][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 4.12e-01 (4.12e-01)	Acc (s) 0.90 (0.90)
+Epoch: [89][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.15e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [89][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.36e-01 (1.98e-01)	Acc (s) 0.94 (0.96)
+Epoch: [89][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [89][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.01e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.194 ( 0.194)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9715104166666667 best: 0.971848958333333
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [90][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.51e-01 (2.51e-01)	Acc (s) 0.94 (0.94)
+Epoch: [90][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.42e-01 (2.04e-01)	Acc (s) 0.94 (0.96)
+Epoch: [90][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.70e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Epoch: [90][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [90][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.174 ( 0.174)	Loss 1.35e-01 (1.35e-01)	all 0.98 (0.98)
+Source: 0.9718489583333332 best: 0.9718489583333332
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [91][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.61e-01)	Acc (s) 0.98 (0.98)
+Epoch: [91][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.41e-01 (1.95e-01)	Acc (s) 0.98 (0.96)
+Epoch: [91][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.25e-01 (1.96e-01)	Acc (s) 0.99 (0.96)
+Epoch: [91][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.26e-01 (1.97e-01)	Acc (s) 0.99 (0.96)
+Epoch: [91][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.184 ( 0.184)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9717708333333333 best: 0.9718489583333332
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [92][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.14e-01 (2.14e-01)	Acc (s) 0.96 (0.96)
+Epoch: [92][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.62e-01 (1.94e-01)	Acc (s) 0.93 (0.96)
+Epoch: [92][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.18e-01 (1.97e-01)	Acc (s) 0.95 (0.96)
+Epoch: [92][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [92][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.80e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.217 ( 0.217)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9719270833333329 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [93][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.47e-01 (1.47e-01)	Acc (s) 0.98 (0.98)
+Epoch: [93][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.25e-01 (1.94e-01)	Acc (s) 0.94 (0.96)
+Epoch: [93][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.33e-01 (1.94e-01)	Acc (s) 0.99 (0.96)
+Epoch: [93][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Epoch: [93][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.27e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.200 ( 0.200)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9719010416666666 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [94][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.84e-01 (1.84e-01)	Acc (s) 0.98 (0.98)
+Epoch: [94][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [94][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.75e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [94][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.20e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Epoch: [94][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.60e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.224 ( 0.224)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9716145833333333 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [95][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.71e-01 (2.71e-01)	Acc (s) 0.93 (0.93)
+Epoch: [95][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (1.96e-01)	Acc (s) 0.95 (0.96)
+Epoch: [95][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.64e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [95][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [95][400/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9717187500000002 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [96][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.18e-01 (2.18e-01)	Acc (s) 0.95 (0.95)
+Epoch: [96][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.42e-01 (1.98e-01)	Acc (s) 0.99 (0.96)
+Epoch: [96][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Epoch: [96][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [96][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.31e-01 (1.97e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.971640625 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [97][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.42e-01 (2.42e-01)	Acc (s) 0.95 (0.95)
+Epoch: [97][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Epoch: [97][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.23e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Epoch: [97][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.64e-01 (2.00e-01)	Acc (s) 0.98 (0.96)
+Epoch: [97][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.60e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.185 ( 0.185)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9714843750000002 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [98][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (2.00e-01)	Acc (s) 0.95 (0.95)
+Epoch: [98][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.65e-01 (1.92e-01)	Acc (s) 0.97 (0.96)
+Epoch: [98][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.54e-01 (1.97e-01)	Acc (s) 0.95 (0.96)
+Epoch: [98][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.39e-01 (1.97e-01)	Acc (s) 0.98 (0.96)
+Epoch: [98][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 3.09e-01 (1.97e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.196 ( 0.196)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9717187500000002 best: 0.9719270833333329
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [99][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.86e-01)	Acc (s) 0.96 (0.96)
+Epoch: [99][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.02e-01 (2.04e-01)	Acc (s) 0.96 (0.96)
+Epoch: [99][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (2.02e-01)	Acc (s) 0.96 (0.96)
+Epoch: [99][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.62e-01 (2.01e-01)	Acc (s) 0.97 (0.96)
+Epoch: [99][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.49e-01 (2.01e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.198 ( 0.198)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9722656249999996 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [100][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.64e-01 (1.64e-01)	Acc (s) 0.98 (0.98)
+Epoch: [100][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [100][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.90e-01 (1.94e-01)	Acc (s) 0.92 (0.96)
+Epoch: [100][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.36e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Epoch: [100][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.43e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.233 ( 0.233)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9719791666666668 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [101][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.61e-01 (2.61e-01)	Acc (s) 0.95 (0.95)
+Epoch: [101][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.34e-01 (1.89e-01)	Acc (s) 0.95 (0.97)
+Epoch: [101][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [101][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.75e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [101][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  2.297 ( 2.297)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9713281249999999 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [102][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.03e-01 (1.03e-01)	Acc (s) 0.99 (0.99)
+Epoch: [102][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.90e-01 (1.95e-01)	Acc (s) 0.92 (0.96)
+Epoch: [102][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.28e-01 (1.94e-01)	Acc (s) 0.95 (0.96)
+Epoch: [102][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [102][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.50e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.193 ( 0.193)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9717187499999999 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [103][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (2.17e-01)	Acc (s) 0.96 (0.96)
+Epoch: [103][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [103][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.45e-01 (1.95e-01)	Acc (s) 0.98 (0.96)
+Epoch: [103][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.60e-01 (1.97e-01)	Acc (s) 0.98 (0.96)
+Epoch: [103][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.42e-01 (1.96e-01)	Acc (s) 0.99 (0.96)
+Test: [  0/100]	Time  0.192 ( 0.192)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.971796875 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [104][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (1.76e-01)	Acc (s) 0.98 (0.98)
+Epoch: [104][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.29e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Epoch: [104][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (1.94e-01)	Acc (s) 0.95 (0.96)
+Epoch: [104][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [104][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.32e-01 (1.93e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9717968749999999 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [105][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.66e-01 (1.66e-01)	Acc (s) 0.97 (0.97)
+Epoch: [105][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.87e-01 (1.90e-01)	Acc (s) 0.97 (0.96)
+Epoch: [105][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.27e-01 (1.89e-01)	Acc (s) 0.95 (0.96)
+Epoch: [105][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.54e-01 (1.90e-01)	Acc (s) 0.97 (0.96)
+Epoch: [105][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (1.90e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.206 ( 0.206)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9717968749999999 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [106][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.40e-01 (1.40e-01)	Acc (s) 0.98 (0.98)
+Epoch: [106][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.52e-01 (1.93e-01)	Acc (s) 0.93 (0.96)
+Epoch: [106][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [106][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [106][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.30e-01 (1.94e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9720312499999997 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [107][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.51e-01 (1.51e-01)	Acc (s) 0.97 (0.97)
+Epoch: [107][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.53e-01 (1.97e-01)	Acc (s) 0.98 (0.96)
+Epoch: [107][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.10e-01 (1.97e-01)	Acc (s) 0.92 (0.96)
+Epoch: [107][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.57e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [107][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.81e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.213 ( 0.213)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9717187499999999 best: 0.9722656249999996
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [108][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.11e-01 (2.11e-01)	Acc (s) 0.95 (0.95)
+Epoch: [108][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Epoch: [108][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [108][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Epoch: [108][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.34e-01 (1.98e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.97234375 best: 0.97234375
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [109][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.99e-01 (1.99e-01)	Acc (s) 0.95 (0.95)
+Epoch: [109][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.88e-01 (2.03e-01)	Acc (s) 0.93 (0.96)
+Epoch: [109][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.60e-01 (2.00e-01)	Acc (s) 0.94 (0.96)
+Epoch: [109][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (1.99e-01)	Acc (s) 0.98 (0.96)
+Epoch: [109][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (1.98e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9721875000000001 best: 0.97234375
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [110][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.25e-01 (1.25e-01)	Acc (s) 1.00 (1.00)
+Epoch: [110][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.49e-01 (1.95e-01)	Acc (s) 0.98 (0.96)
+Epoch: [110][200/500]	Time 0.22 (0.20)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Epoch: [110][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.74e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [110][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.70e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9722916666666669 best: 0.97234375
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [111][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (1.76e-01)	Acc (s) 0.98 (0.98)
+Epoch: [111][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (2.03e-01)	Acc (s) 0.96 (0.96)
+Epoch: [111][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.38e-01 (1.99e-01)	Acc (s) 0.98 (0.96)
+Epoch: [111][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [111][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.07e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.185 ( 0.185)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9719010416666669 best: 0.97234375
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [112][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.52e-01 (1.52e-01)	Acc (s) 0.98 (0.98)
+Epoch: [112][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.91e-01)	Acc (s) 0.97 (0.96)
+Epoch: [112][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Epoch: [112][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.93e-01)	Acc (s) 0.98 (0.96)
+Epoch: [112][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (1.94e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.333 ( 0.333)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9717968749999997 best: 0.97234375
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [113][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.52e-01 (2.52e-01)	Acc (s) 0.94 (0.94)
+Epoch: [113][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.28e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Epoch: [113][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.75e-01 (1.91e-01)	Acc (s) 0.97 (0.96)
+Epoch: [113][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.33e-01 (1.93e-01)	Acc (s) 0.98 (0.96)
+Epoch: [113][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.91e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9723437500000002 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [114][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (2.03e-01)	Acc (s) 0.96 (0.96)
+Epoch: [114][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.51e-01 (1.91e-01)	Acc (s) 0.98 (0.96)
+Epoch: [114][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.05e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [114][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.20e-01 (1.94e-01)	Acc (s) 0.95 (0.96)
+Epoch: [114][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.217 ( 0.217)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9721614583333331 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [115][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (2.10e-01)	Acc (s) 0.96 (0.96)
+Epoch: [115][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [115][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (1.93e-01)	Acc (s) 0.97 (0.96)
+Epoch: [115][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.01e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [115][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.18e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.972265625 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [116][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.48e-01 (1.48e-01)	Acc (s) 0.97 (0.97)
+Epoch: [116][100/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [116][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.33e-01 (1.99e-01)	Acc (s) 0.95 (0.96)
+Epoch: [116][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.30e-01 (2.00e-01)	Acc (s) 0.95 (0.96)
+Epoch: [116][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.28e-01 (1.99e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9722135416666664 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [117][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.02e-01 (2.02e-01)	Acc (s) 0.96 (0.96)
+Epoch: [117][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [117][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [117][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [117][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.93e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9721354166666668 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [118][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.86e-01)	Acc (s) 0.96 (0.96)
+Epoch: [118][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [118][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.79e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [118][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.97e-01)	Acc (s) 0.95 (0.96)
+Epoch: [118][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.12e-01 (1.99e-01)	Acc (s) 0.91 (0.96)
+Test: [  0/100]	Time  0.185 ( 0.185)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9722916666666666 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [119][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.80e-01 (1.80e-01)	Acc (s) 0.97 (0.97)
+Epoch: [119][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.28e-01 (1.94e-01)	Acc (s) 0.99 (0.96)
+Epoch: [119][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.27e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Epoch: [119][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [119][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.66e-01 (1.98e-01)	Acc (s) 0.93 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9720572916666665 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [120][  0/500]	Time 0.22 (0.22)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [120][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.64e-01 (2.01e-01)	Acc (s) 0.97 (0.96)
+Epoch: [120][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.35e-01 (2.01e-01)	Acc (s) 0.95 (0.96)
+Epoch: [120][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [120][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9717968750000003 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [121][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.07e-01 (2.07e-01)	Acc (s) 0.96 (0.96)
+Epoch: [121][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.50e-01 (1.97e-01)	Acc (s) 0.99 (0.96)
+Epoch: [121][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.28e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Epoch: [121][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.84e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [121][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.972057291666667 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [122][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.52e-01 (1.52e-01)	Acc (s) 0.97 (0.97)
+Epoch: [122][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [122][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [122][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.58e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [122][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9717968750000001 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [123][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.05e-01 (2.05e-01)	Acc (s) 0.96 (0.96)
+Epoch: [123][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.56e-01 (1.88e-01)	Acc (s) 0.97 (0.97)
+Epoch: [123][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [123][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (1.92e-01)	Acc (s) 0.98 (0.96)
+Epoch: [123][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.54e-01 (1.93e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.188 ( 0.188)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9717447916666666 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [124][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (2.10e-01)	Acc (s) 0.96 (0.96)
+Epoch: [124][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.60e-01 (1.97e-01)	Acc (s) 0.93 (0.96)
+Epoch: [124][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.43e-01 (1.95e-01)	Acc (s) 0.99 (0.96)
+Epoch: [124][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.87e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [124][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.92e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9720312500000001 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [125][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.42e-01 (1.42e-01)	Acc (s) 0.98 (0.98)
+Epoch: [125][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.99e-01 (1.88e-01)	Acc (s) 0.97 (0.96)
+Epoch: [125][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.91e-01)	Acc (s) 0.96 (0.96)
+Epoch: [125][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.66e-01 (1.93e-01)	Acc (s) 0.97 (0.96)
+Epoch: [125][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.02e-01 (1.92e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.190 ( 0.190)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9721614583333336 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [126][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.15e-01 (2.15e-01)	Acc (s) 0.96 (0.96)
+Epoch: [126][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.75e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [126][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.16e-01 (2.02e-01)	Acc (s) 0.96 (0.96)
+Epoch: [126][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.18e-01 (2.01e-01)	Acc (s) 0.92 (0.96)
+Epoch: [126][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.68e-01 (1.99e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.220 ( 0.220)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9719791666666668 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [127][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.54e-01 (2.54e-01)	Acc (s) 0.93 (0.93)
+Epoch: [127][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [127][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (1.93e-01)	Acc (s) 0.95 (0.96)
+Epoch: [127][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.46e-01 (1.92e-01)	Acc (s) 0.95 (0.96)
+Epoch: [127][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.66e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.206 ( 0.206)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9721093749999998 best: 0.9723437500000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [128][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.80e-01 (1.80e-01)	Acc (s) 0.96 (0.96)
+Epoch: [128][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (1.98e-01)	Acc (s) 0.96 (0.96)
+Epoch: [128][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.43e-01 (1.99e-01)	Acc (s) 0.98 (0.96)
+Epoch: [128][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (2.01e-01)	Acc (s) 0.96 (0.96)
+Epoch: [128][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.192 ( 0.192)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9725260416666666 best: 0.9725260416666666
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [129][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.61e-01 (2.61e-01)	Acc (s) 0.96 (0.96)
+Epoch: [129][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.92e-01 (1.91e-01)	Acc (s) 0.93 (0.96)
+Epoch: [129][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.32e-01 (1.93e-01)	Acc (s) 0.95 (0.96)
+Epoch: [129][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [129][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.207 ( 0.207)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9722395833333332 best: 0.9725260416666666
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [130][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.56e-01 (2.56e-01)	Acc (s) 0.94 (0.94)
+Epoch: [130][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.49e-01 (1.92e-01)	Acc (s) 0.94 (0.96)
+Epoch: [130][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [130][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.78e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [130][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.92e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.184 ( 0.184)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.972005208333333 best: 0.9725260416666666
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [131][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.70e-01 (1.70e-01)	Acc (s) 0.97 (0.97)
+Epoch: [131][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 3.01e-01 (1.96e-01)	Acc (s) 0.91 (0.96)
+Epoch: [131][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.96e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [131][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.98e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [131][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.55e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9723697916666668 best: 0.9725260416666666
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [132][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.25e-01 (2.25e-01)	Acc (s) 0.95 (0.95)
+Epoch: [132][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.93e-01)	Acc (s) 0.97 (0.96)
+Epoch: [132][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.35e-01 (1.98e-01)	Acc (s) 0.99 (0.96)
+Epoch: [132][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.76e-01 (2.00e-01)	Acc (s) 0.97 (0.96)
+Epoch: [132][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.53e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9725520833333334 best: 0.9725520833333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [133][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.39e-01 (1.39e-01)	Acc (s) 0.97 (0.97)
+Epoch: [133][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.92e-01)	Acc (s) 0.94 (0.96)
+Epoch: [133][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.17e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [133][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.60e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [133][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.207 ( 0.207)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.972552083333333 best: 0.9725520833333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [134][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 2.11e-01 (2.11e-01)	Acc (s) 0.95 (0.95)
+Epoch: [134][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.46e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Epoch: [134][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Epoch: [134][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.16e-01 (1.96e-01)	Acc (s) 0.95 (0.96)
+Epoch: [134][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.191 ( 0.191)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9724999999999998 best: 0.9725520833333334
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [135][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.48e-01 (1.48e-01)	Acc (s) 0.98 (0.98)
+Epoch: [135][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.94e-01 (1.97e-01)	Acc (s) 0.94 (0.96)
+Epoch: [135][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.79e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [135][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.87e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [135][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.06e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Test: [  0/100]	Time  0.216 ( 0.216)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9726562499999997 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [136][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.16e-01 (2.16e-01)	Acc (s) 0.96 (0.96)
+Epoch: [136][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [136][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [136][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.79e-01 (1.97e-01)	Acc (s) 0.93 (0.96)
+Epoch: [136][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.189 ( 0.189)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9722135416666666 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [137][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.87e-01 (1.87e-01)	Acc (s) 0.96 (0.96)
+Epoch: [137][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.90e-01 (1.92e-01)	Acc (s) 0.96 (0.96)
+Epoch: [137][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.65e-01 (1.97e-01)	Acc (s) 0.94 (0.96)
+Epoch: [137][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.03e-01 (1.97e-01)	Acc (s) 0.96 (0.96)
+Epoch: [137][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.01e-01 (1.95e-01)	Acc (s) 0.94 (0.96)
+Test: [  0/100]	Time  0.192 ( 0.192)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.972421875 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [138][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.93e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [138][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.62e-01 (1.95e-01)	Acc (s) 0.97 (0.96)
+Epoch: [138][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.37e-01 (1.96e-01)	Acc (s) 0.95 (0.96)
+Epoch: [138][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [138][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.95e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9719791666666667 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [139][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.47e-01 (2.47e-01)	Acc (s) 0.94 (0.94)
+Epoch: [139][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Epoch: [139][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.94e-01)	Acc (s) 0.97 (0.96)
+Epoch: [139][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.08e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [139][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.52e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.187 ( 0.187)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9722916666666667 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [140][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.58e-01 (2.58e-01)	Acc (s) 0.94 (0.94)
+Epoch: [140][100/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (1.98e-01)	Acc (s) 0.98 (0.96)
+Epoch: [140][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.02e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [140][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.73e-01 (1.98e-01)	Acc (s) 0.97 (0.96)
+Epoch: [140][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.59e-01 (1.96e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.237 ( 0.237)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9722656250000001 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [141][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.35e-01 (2.35e-01)	Acc (s) 0.95 (0.95)
+Epoch: [141][100/500]	Time 0.20 (0.22)	Data 0.0 (0.0)	Loss (s) 1.31e-01 (1.92e-01)	Acc (s) 0.98 (0.96)
+Epoch: [141][200/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.47e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Epoch: [141][300/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.47e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Epoch: [141][400/500]	Time 0.20 (0.21)	Data 0.0 (0.0)	Loss (s) 1.61e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.339 ( 0.339)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9723958333333335 best: 0.9726562499999997
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [142][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.09e-01 (2.09e-01)	Acc (s) 0.96 (0.96)
+Epoch: [142][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.91e-01 (1.86e-01)	Acc (s) 0.97 (0.97)
+Epoch: [142][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.95e-01 (1.88e-01)	Acc (s) 0.95 (0.97)
+Epoch: [142][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (1.91e-01)	Acc (s) 0.97 (0.96)
+Epoch: [142][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.05e-01 (1.90e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.183 ( 0.183)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.97265625 best: 0.97265625
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [143][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.57e-01 (1.57e-01)	Acc (s) 0.98 (0.98)
+Epoch: [143][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.54e-01 (1.93e-01)	Acc (s) 0.94 (0.96)
+Epoch: [143][200/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.67e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [143][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.83e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Epoch: [143][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.21e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.177 ( 0.177)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9723958333333331 best: 0.97265625
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [144][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [144][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.88e-01 (1.93e-01)	Acc (s) 0.97 (0.96)
+Epoch: [144][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.86e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [144][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.10e-01 (1.96e-01)	Acc (s) 0.94 (0.96)
+Epoch: [144][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.82e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.34e-01 (1.34e-01)	all 0.98 (0.98)
+Source: 0.9726302083333332 best: 0.97265625
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [145][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.51e-01 (1.51e-01)	Acc (s) 0.98 (0.98)
+Epoch: [145][100/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.97e-01 (1.90e-01)	Acc (s) 0.97 (0.96)
+Epoch: [145][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.50e-01 (1.94e-01)	Acc (s) 0.99 (0.96)
+Epoch: [145][300/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.38e-01 (1.93e-01)	Acc (s) 0.98 (0.96)
+Epoch: [145][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 1.38e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.184 ( 0.184)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9728125000000002 best: 0.9728125000000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [146][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.85e-01 (1.85e-01)	Acc (s) 0.96 (0.96)
+Epoch: [146][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.49e-01 (1.95e-01)	Acc (s) 0.94 (0.96)
+Epoch: [146][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.45e-01 (1.94e-01)	Acc (s) 0.94 (0.96)
+Epoch: [146][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (1.93e-01)	Acc (s) 0.94 (0.96)
+Epoch: [146][400/500]	Time 0.21 (0.20)	Data 0.0 (0.0)	Loss (s) 2.06e-01 (1.93e-01)	Acc (s) 0.96 (0.96)
+Test: [  0/100]	Time  0.188 ( 0.188)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9723958333333335 best: 0.9728125000000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [147][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.00e-01 (2.00e-01)	Acc (s) 0.95 (0.95)
+Epoch: [147][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.53e-01 (1.96e-01)	Acc (s) 0.97 (0.96)
+Epoch: [147][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.43e-01 (1.96e-01)	Acc (s) 0.93 (0.96)
+Epoch: [147][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.94e-01)	Acc (s) 0.96 (0.96)
+Epoch: [147][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.29e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.248 ( 0.248)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9722395833333332 best: 0.9728125000000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [148][  0/500]	Time 0.21 (0.21)	Data 0.0 (0.0)	Loss (s) 1.97e-01 (1.97e-01)	Acc (s) 0.95 (0.95)
+Epoch: [148][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.94e-01 (1.88e-01)	Acc (s) 0.97 (0.97)
+Epoch: [148][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (1.91e-01)	Acc (s) 0.97 (0.96)
+Epoch: [148][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.40e-01 (1.92e-01)	Acc (s) 0.94 (0.96)
+Epoch: [148][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.69e-01 (1.94e-01)	Acc (s) 0.98 (0.96)
+Test: [  0/100]	Time  0.186 ( 0.186)	Loss 1.33e-01 (1.33e-01)	all 0.98 (0.98)
+Source: 0.9724999999999998 best: 0.9728125000000002
+[3.0000000000000004e-05, 0.00030000000000000003, 0.00030000000000000003]
+Epoch: [149][  0/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.39e-01 (2.39e-01)	Acc (s) 0.95 (0.95)
+Epoch: [149][100/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.22e-01 (1.94e-01)	Acc (s) 0.95 (0.96)
+Epoch: [149][200/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.04e-01 (1.95e-01)	Acc (s) 0.95 (0.96)
+Epoch: [149][300/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 1.89e-01 (1.96e-01)	Acc (s) 0.96 (0.96)
+Epoch: [149][400/500]	Time 0.20 (0.20)	Data 0.0 (0.0)	Loss (s) 2.11e-01 (1.97e-01)	Acc (s) 0.97 (0.96)
+Test: [  0/100]	Time  0.225 ( 0.225)	Loss 1.32e-01 (1.32e-01)	all 0.98 (0.98)
+Source: 0.9724479166666664 best: 0.9728125000000002
+Start regression domain adaptation.
+/home/lab1119/anaconda3/envs/SFDA/lib/python3.9/site-packages/torch/optim/lr_scheduler.py:249: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  warnings.warn("To get the last learning rate computed by the scheduler, "
+[0.0009, 0.0009] [0.009] [0.009]
+Epoch: [0][  0/500]	Time 1.06 (1.06)	Data 0.0 (0.0)	Loss (s) 2.04e+01 (2.04e+01)	Loss (t, false) 1.76e+00 (1.76e+00)	Loss (t, truth) 2.67e+00 (2.67e+00)	Acc (s) 0.03 (0.03)	Acc (t) 0.22 (0.22)	Acc (s, adv) 0.09 (0.09)	Acc (t, adv) 0.04 (0.04)
+Epoch: [0][100/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.14e+00 (2.48e+00)	Loss (t, false) 1.40e+00 (1.57e+00)	Loss (t, truth) 6.74e-01 (8.51e-01)	Acc (s) 0.97 (0.90)	Acc (t) 0.54 (0.40)	Acc (s, adv) 0.96 (0.85)	Acc (t, adv) 0.51 (0.35)
+Epoch: [0][200/500]	Time 0.93 (0.87)	Data 0.0 (0.0)	Loss (s) 1.12e+00 (1.85e+00)	Loss (t, false) 1.20e+00 (1.44e+00)	Loss (t, truth) 7.63e-01 (8.12e-01)	Acc (s) 0.96 (0.93)	Acc (t) 0.44 (0.43)	Acc (s, adv) 0.97 (0.90)	Acc (t, adv) 0.42 (0.39)
+Epoch: [0][300/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.18e+00 (1.63e+00)	Loss (t, false) 1.15e+00 (1.35e+00)	Loss (t, truth) 6.66e-01 (7.98e-01)	Acc (s) 0.97 (0.94)	Acc (t) 0.58 (0.45)	Acc (s, adv) 0.97 (0.92)	Acc (t, adv) 0.55 (0.42)
+Epoch: [0][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.08e+00 (1.51e+00)	Loss (t, false) 9.45e-01 (1.28e+00)	Loss (t, truth) 9.14e-01 (7.88e-01)	Acc (s) 0.94 (0.95)	Acc (t) 0.47 (0.47)	Acc (s, adv) 0.94 (0.93)	Acc (t, adv) 0.45 (0.44)
+Test: [  0/100]	Time  0.332 ( 0.332)	Loss 1.73e-01 (1.73e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.197 ( 0.197)	Loss 1.44e+00 (1.44e+00)	all 0.58 (0.58)
+Source: 0.961 Target: 0.631 Target(best): 0.631
+head: 0.033
+shoulder: 0.540
+elbow: 0.658
+wrist: 0.615
+hip: 0.661
+knee: 0.665
+ankle: 0.648
+all: 0.631
+[0.0008676619152248907, 0.0008676619152248907] [0.008676619152248908] [0.008676619152248908]
+Epoch: [1][  0/500]	Time 0.86 (0.86)	Data 0.0 (0.0)	Loss (s) 1.39e+00 (1.39e+00)	Loss (t, false) 1.01e+00 (1.01e+00)	Loss (t, truth) 8.23e-01 (8.23e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.55 (0.55)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.52 (0.52)
+Epoch: [1][100/500]	Time 0.84 (0.85)	Data 0.0 (0.0)	Loss (s) 1.16e+00 (1.15e+00)	Loss (t, false) 9.87e-01 (9.54e-01)	Loss (t, truth) 8.25e-01 (7.93e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.65 (0.60)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.61 (0.55)
+Epoch: [1][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.64e+00 (1.15e+00)	Loss (t, false) 8.50e-01 (9.35e-01)	Loss (t, truth) 9.06e-01 (8.15e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.65 (0.61)	Acc (s, adv) 0.92 (0.96)	Acc (t, adv) 0.56 (0.55)
+Epoch: [1][300/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.30e+00 (1.15e+00)	Loss (t, false) 8.75e-01 (9.21e-01)	Loss (t, truth) 9.24e-01 (8.35e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.56 (0.61)	Acc (s, adv) 0.94 (0.96)	Acc (t, adv) 0.50 (0.55)
+Epoch: [1][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.31e+00 (1.16e+00)	Loss (t, false) 7.34e-01 (9.09e-01)	Loss (t, truth) 1.02e+00 (8.52e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.73 (0.62)	Acc (s, adv) 0.95 (0.96)	Acc (t, adv) 0.57 (0.55)
+Test: [  0/100]	Time  0.324 ( 0.324)	Loss 1.84e-01 (1.84e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.199 ( 0.199)	Loss 1.26e+00 (1.26e+00)	all 0.62 (0.62)
+Source: 0.959 Target: 0.692 Target(best): 0.692
+head: 0.052
+shoulder: 0.594
+elbow: 0.708
+wrist: 0.656
+hip: 0.755
+knee: 0.731
+ankle: 0.709
+all: 0.692
+[0.0008379112001600004, 0.0008379112001600004] [0.008379112001600004] [0.008379112001600004]
+Epoch: [2][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.13e+00 (1.13e+00)	Loss (t, false) 8.45e-01 (8.45e-01)	Loss (t, truth) 8.59e-01 (8.59e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.60 (0.60)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.53 (0.53)
+Epoch: [2][100/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.24e+00 (1.26e+00)	Loss (t, false) 8.40e-01 (8.83e-01)	Loss (t, truth) 9.71e-01 (8.80e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.57 (0.64)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.46 (0.55)
+Epoch: [2][200/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.16e+00 (1.25e+00)	Loss (t, false) 9.00e-01 (8.81e-01)	Loss (t, truth) 8.48e-01 (8.88e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.66 (0.63)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.58 (0.54)
+Epoch: [2][300/500]	Time 0.90 (0.87)	Data 0.0 (0.0)	Loss (s) 1.32e+00 (1.26e+00)	Loss (t, false) 1.12e+00 (8.96e-01)	Loss (t, truth) 6.59e-01 (8.80e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.60 (0.63)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.57 (0.54)
+Epoch: [2][400/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.27e+00 (1.26e+00)	Loss (t, false) 1.01e+00 (9.14e-01)	Loss (t, truth) 9.22e-01 (8.68e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.63 (0.62)	Acc (s, adv) 0.93 (0.95)	Acc (t, adv) 0.56 (0.54)
+Test: [  0/100]	Time  0.342 ( 0.342)	Loss 2.29e-01 (2.29e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.196 ( 0.196)	Loss 1.71e+00 (1.71e+00)	all 0.61 (0.61)
+Source: 0.953 Target: 0.642 Target(best): 0.692
+head: 0.042
+shoulder: 0.548
+elbow: 0.645
+wrist: 0.596
+hip: 0.728
+knee: 0.667
+ankle: 0.667
+all: 0.642
+[0.0008104367553977913, 0.0008104367553977913] [0.008104367553977913] [0.008104367553977913]
+Epoch: [3][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.26e+00 (1.26e+00)	Loss (t, false) 1.05e+00 (1.05e+00)	Loss (t, truth) 8.80e-01 (8.80e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.53 (0.53)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.48 (0.48)
+Epoch: [3][100/500]	Time 0.85 (0.86)	Data 0.0 (0.0)	Loss (s) 1.49e+00 (1.29e+00)	Loss (t, false) 1.15e+00 (1.09e+00)	Loss (t, truth) 8.07e-01 (7.50e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.52 (0.54)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.50 (0.51)
+Epoch: [3][200/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.37e+00 (1.29e+00)	Loss (t, false) 1.13e+00 (1.10e+00)	Loss (t, truth) 6.38e-01 (7.34e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.54 (0.55)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.53 (0.52)
+Epoch: [3][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.23e+00 (1.29e+00)	Loss (t, false) 8.89e-01 (1.10e+00)	Loss (t, truth) 7.88e-01 (7.19e-01)	Acc (s) 0.92 (0.96)	Acc (t) 0.55 (0.55)	Acc (s, adv) 0.93 (0.95)	Acc (t, adv) 0.49 (0.52)
+Epoch: [3][400/500]	Time 0.91 (0.87)	Data 0.0 (0.0)	Loss (s) 1.48e+00 (1.29e+00)	Loss (t, false) 1.28e+00 (1.10e+00)	Loss (t, truth) 5.37e-01 (7.02e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.50 (0.55)	Acc (s, adv) 0.92 (0.95)	Acc (t, adv) 0.47 (0.52)
+Test: [  0/100]	Time  0.325 ( 0.325)	Loss 2.14e-01 (2.14e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.197 ( 0.197)	Loss 1.73e+00 (1.73e+00)	all 0.59 (0.59)
+Source: 0.952 Target: 0.598 Target(best): 0.692
+head: 0.033
+shoulder: 0.486
+elbow: 0.599
+wrist: 0.564
+hip: 0.676
+knee: 0.638
+ankle: 0.626
+all: 0.598
+[0.000784976354544079, 0.000784976354544079] [0.00784976354544079] [0.00784976354544079]
+Epoch: [4][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 8.97e-01 (8.97e-01)	Loss (t, false) 1.04e+00 (1.04e+00)	Loss (t, truth) 6.69e-01 (6.69e-01)	Acc (s) 0.98 (0.98)	Acc (t) 0.48 (0.48)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.46 (0.46)
+Epoch: [4][100/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.40e+00 (1.30e+00)	Loss (t, false) 9.40e-01 (1.12e+00)	Loss (t, truth) 7.27e-01 (6.24e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.62 (0.55)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.62 (0.53)
+Epoch: [4][200/500]	Time 0.84 (0.88)	Data 0.0 (0.0)	Loss (s) 1.29e+00 (1.31e+00)	Loss (t, false) 1.08e+00 (1.11e+00)	Loss (t, truth) 7.01e-01 (6.20e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.56 (0.54)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.56 (0.53)
+Epoch: [4][300/500]	Time 0.86 (0.88)	Data 0.0 (0.0)	Loss (s) 1.16e+00 (1.31e+00)	Loss (t, false) 1.08e+00 (1.11e+00)	Loss (t, truth) 5.82e-01 (6.10e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.59 (0.54)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.58 (0.53)
+Epoch: [4][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.39e+00 (1.31e+00)	Loss (t, false) 1.10e+00 (1.11e+00)	Loss (t, truth) 5.03e-01 (6.06e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.51 (0.54)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.52 (0.53)
+Test: [  0/100]	Time  0.287 ( 0.287)	Loss 2.36e-01 (2.36e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.211 ( 0.211)	Loss 1.91e+00 (1.91e+00)	all 0.58 (0.58)
+Source: 0.956 Target: 0.609 Target(best): 0.692
+head: 0.038
+shoulder: 0.501
+elbow: 0.608
+wrist: 0.568
+hip: 0.707
+knee: 0.640
+ankle: 0.629
+all: 0.609
+[0.0007613073096772061, 0.0007613073096772061] [0.0076130730967720606] [0.0076130730967720606]
+Epoch: [5][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.20e+00 (1.20e+00)	Loss (t, false) 9.14e-01 (9.14e-01)	Loss (t, truth) 6.54e-01 (6.54e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.60 (0.60)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.56 (0.56)
+Epoch: [5][100/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.23e+00 (1.32e+00)	Loss (t, false) 1.15e+00 (1.07e+00)	Loss (t, truth) 5.22e-01 (6.07e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.53 (0.53)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.55 (0.52)
+Epoch: [5][200/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.20e+00 (1.33e+00)	Loss (t, false) 1.04e+00 (1.05e+00)	Loss (t, truth) 6.08e-01 (6.03e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.56 (0.53)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.55 (0.52)
+Epoch: [5][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.21e+00 (1.33e+00)	Loss (t, false) 9.47e-01 (1.05e+00)	Loss (t, truth) 7.73e-01 (6.03e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.56 (0.53)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.54 (0.52)
+Epoch: [5][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.39e+00 (1.34e+00)	Loss (t, false) 1.21e+00 (1.05e+00)	Loss (t, truth) 5.02e-01 (6.00e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.39 (0.53)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.40 (0.52)
+Test: [  0/100]	Time  0.319 ( 0.319)	Loss 2.31e-01 (2.31e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.200 ( 0.200)	Loss 2.32e+00 (2.32e+00)	all 0.56 (0.56)
+Source: 0.956 Target: 0.608 Target(best): 0.692
+head: 0.042
+shoulder: 0.474
+elbow: 0.608
+wrist: 0.567
+hip: 0.727
+knee: 0.638
+ankle: 0.634
+all: 0.608
+[0.000739239211642459, 0.000739239211642459] [0.00739239211642459] [0.00739239211642459]
+Epoch: [6][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.10e+00 (1.10e+00)	Loss (t, false) 9.13e-01 (9.13e-01)	Loss (t, truth) 6.55e-01 (6.55e-01)	Acc (s) 0.99 (0.99)	Acc (t) 0.58 (0.58)	Acc (s, adv) 0.98 (0.98)	Acc (t, adv) 0.56 (0.56)
+Epoch: [6][100/500]	Time 1.88 (0.87)	Data 1.0 (0.0)	Loss (s) 1.26e+00 (1.36e+00)	Loss (t, false) 1.22e+00 (1.03e+00)	Loss (t, truth) 5.50e-01 (5.96e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.49 (0.53)	Acc (s, adv) 0.98 (0.95)	Acc (t, adv) 0.47 (0.51)
+Epoch: [6][200/500]	Time 0.89 (0.87)	Data 0.0 (0.0)	Loss (s) 1.58e+00 (1.36e+00)	Loss (t, false) 1.30e+00 (1.03e+00)	Loss (t, truth) 4.61e-01 (5.96e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.49 (0.53)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.49 (0.51)
+Epoch: [6][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.19e+00 (1.36e+00)	Loss (t, false) 1.01e+00 (1.04e+00)	Loss (t, truth) 6.07e-01 (5.89e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.55 (0.53)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.55 (0.51)
+Epoch: [6][400/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.45e+00 (1.36e+00)	Loss (t, false) 1.08e+00 (1.04e+00)	Loss (t, truth) 5.96e-01 (5.86e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.52 (0.52)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.51 (0.51)
+Test: [  0/100]	Time  0.225 ( 0.225)	Loss 2.29e-01 (2.29e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.196 ( 0.196)	Loss 2.15e+00 (2.15e+00)	all 0.60 (0.60)
+Source: 0.954 Target: 0.614 Target(best): 0.692
+head: 0.048
+shoulder: 0.497
+elbow: 0.604
+wrist: 0.561
+hip: 0.738
+knee: 0.652
+ankle: 0.632
+all: 0.614
+[0.0007186082239261683, 0.0007186082239261683] [0.007186082239261683] [0.007186082239261683]
+Epoch: [7][  0/500]	Time 0.90 (0.90)	Data 0.0 (0.0)	Loss (s) 1.17e+00 (1.17e+00)	Loss (t, false) 9.96e-01 (9.96e-01)	Loss (t, truth) 5.90e-01 (5.90e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.48 (0.48)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.46 (0.46)
+Epoch: [7][100/500]	Time 0.88 (0.88)	Data 0.0 (0.0)	Loss (s) 1.34e+00 (1.36e+00)	Loss (t, false) 1.07e+00 (1.04e+00)	Loss (t, truth) 4.56e-01 (5.86e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.48 (0.52)	Acc (s, adv) 0.94 (0.96)	Acc (t, adv) 0.50 (0.51)
+Epoch: [7][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.36e+00 (1.37e+00)	Loss (t, false) 9.65e-01 (1.04e+00)	Loss (t, truth) 6.18e-01 (5.86e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.53 (0.52)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.52 (0.51)
+Epoch: [7][300/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.59e+00 (1.37e+00)	Loss (t, false) 1.18e+00 (1.04e+00)	Loss (t, truth) 5.17e-01 (5.81e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.43 (0.52)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.39 (0.51)
+Epoch: [7][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.28e+00 (1.36e+00)	Loss (t, false) 1.12e+00 (1.05e+00)	Loss (t, truth) 4.99e-01 (5.71e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.48 (0.52)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.50 (0.51)
+Test: [  0/100]	Time  0.300 ( 0.300)	Loss 2.19e-01 (2.19e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.198 ( 0.198)	Loss 2.13e+00 (2.13e+00)	all 0.56 (0.56)
+Source: 0.954 Target: 0.597 Target(best): 0.692
+head: 0.037
+shoulder: 0.470
+elbow: 0.595
+wrist: 0.550
+hip: 0.714
+knee: 0.647
+ankle: 0.608
+all: 0.597
+[0.000699272553816821, 0.000699272553816821] [0.0069927255381682105] [0.0069927255381682105]
+Epoch: [8][  0/500]	Time 0.89 (0.89)	Data 0.0 (0.0)	Loss (s) 1.52e+00 (1.52e+00)	Loss (t, false) 1.02e+00 (1.02e+00)	Loss (t, truth) 5.47e-01 (5.47e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.51 (0.51)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.50 (0.50)
+Epoch: [8][100/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.40e+00 (1.35e+00)	Loss (t, false) 8.52e-01 (1.02e+00)	Loss (t, truth) 6.56e-01 (5.73e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.54 (0.52)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.53 (0.51)
+Epoch: [8][200/500]	Time 0.85 (0.86)	Data 0.0 (0.0)	Loss (s) 1.36e+00 (1.36e+00)	Loss (t, false) 1.11e+00 (1.03e+00)	Loss (t, truth) 5.27e-01 (5.67e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.48 (0.51)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.47 (0.51)
+Epoch: [8][300/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.45e+00 (1.35e+00)	Loss (t, false) 8.44e-01 (1.03e+00)	Loss (t, truth) 6.41e-01 (5.64e-01)	Acc (s) 0.93 (0.96)	Acc (t) 0.54 (0.51)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.55 (0.51)
+Epoch: [8][400/500]	Time 0.85 (0.86)	Data 0.0 (0.0)	Loss (s) 1.20e+00 (1.35e+00)	Loss (t, false) 9.83e-01 (1.03e+00)	Loss (t, truth) 5.90e-01 (5.66e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.55 (0.51)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.54 (0.51)
+Test: [  0/100]	Time  0.267 ( 0.267)	Loss 2.60e-01 (2.60e-01)	all 0.95 (0.95)
+Test: [ 0/63]	Time  0.177 ( 0.177)	Loss 2.14e+00 (2.14e+00)	all 0.55 (0.55)
+Source: 0.949 Target: 0.588 Target(best): 0.692
+head: 0.031
+shoulder: 0.471
+elbow: 0.587
+wrist: 0.555
+hip: 0.697
+knee: 0.632
+ankle: 0.589
+all: 0.588
+[0.0006811088255825272, 0.0006811088255825272] [0.006811088255825271] [0.006811088255825271]
+Epoch: [9][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.23e+00 (1.23e+00)	Loss (t, false) 9.55e-01 (9.55e-01)	Loss (t, truth) 6.82e-01 (6.82e-01)	Acc (s) 0.94 (0.94)	Acc (t) 0.50 (0.50)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.49 (0.49)
+Epoch: [9][100/500]	Time 0.89 (0.86)	Data 0.0 (0.0)	Loss (s) 1.14e+00 (1.31e+00)	Loss (t, false) 9.89e-01 (1.00e+00)	Loss (t, truth) 5.89e-01 (5.92e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.51 (0.51)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.49 (0.50)
+Epoch: [9][200/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.52e+00 (1.33e+00)	Loss (t, false) 1.06e+00 (1.01e+00)	Loss (t, truth) 5.37e-01 (5.85e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.47 (0.51)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.45 (0.50)
+Epoch: [9][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.10e+00 (1.34e+00)	Loss (t, false) 1.08e+00 (1.01e+00)	Loss (t, truth) 5.43e-01 (5.80e-01)	Acc (s) 0.99 (0.96)	Acc (t) 0.54 (0.51)	Acc (s, adv) 0.99 (0.95)	Acc (t, adv) 0.53 (0.50)
+Epoch: [9][400/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.26e+00 (1.33e+00)	Loss (t, false) 1.04e+00 (1.01e+00)	Loss (t, truth) 5.76e-01 (5.79e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.49 (0.51)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.48 (0.50)
+Test: [  0/100]	Time  0.294 ( 0.294)	Loss 2.46e-01 (2.46e-01)	all 0.95 (0.95)
+Test: [ 0/63]	Time  0.193 ( 0.193)	Loss 2.11e+00 (2.11e+00)	all 0.54 (0.54)
+Source: 0.952 Target: 0.556 Target(best): 0.692
+head: 0.031
+shoulder: 0.440
+elbow: 0.564
+wrist: 0.532
+hip: 0.656
+knee: 0.611
+ankle: 0.536
+all: 0.556
+[0.0006640091518201929, 0.0006640091518201929] [0.006640091518201929] [0.006640091518201929]
+Epoch: [10][  0/500]	Time 0.93 (0.93)	Data 0.0 (0.0)	Loss (s) 1.43e+00 (1.43e+00)	Loss (t, false) 1.04e+00 (1.04e+00)	Loss (t, truth) 5.88e-01 (5.88e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.50 (0.50)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.50 (0.50)
+Epoch: [10][100/500]	Time 0.84 (0.88)	Data 0.0 (0.0)	Loss (s) 1.12e+00 (1.35e+00)	Loss (t, false) 9.76e-01 (9.97e-01)	Loss (t, truth) 6.15e-01 (5.72e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.50 (0.51)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.49 (0.50)
+Epoch: [10][200/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.23e+00 (1.33e+00)	Loss (t, false) 9.86e-01 (9.92e-01)	Loss (t, truth) 5.67e-01 (5.74e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.40 (0.51)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.39 (0.50)
+Epoch: [10][300/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.25e+00 (1.33e+00)	Loss (t, false) 1.03e+00 (9.91e-01)	Loss (t, truth) 5.33e-01 (5.74e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.49 (0.51)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.49 (0.50)
+Epoch: [10][400/500]	Time 0.86 (0.87)	Data 0.0 (0.0)	Loss (s) 1.17e+00 (1.33e+00)	Loss (t, false) 9.32e-01 (9.92e-01)	Loss (t, truth) 6.21e-01 (5.72e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.55 (0.51)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.52 (0.50)
+Test: [  0/100]	Time  0.290 ( 0.290)	Loss 2.50e-01 (2.50e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.179 ( 0.179)	Loss 2.38e+00 (2.38e+00)	all 0.54 (0.54)
+Source: 0.951 Target: 0.576 Target(best): 0.692
+head: 0.043
+shoulder: 0.472
+elbow: 0.573
+wrist: 0.537
+hip: 0.690
+knee: 0.619
+ankle: 0.562
+all: 0.576
+[0.0006478787503104933, 0.0006478787503104933] [0.0064787875031049325] [0.0064787875031049325]
+Epoch: [11][  0/500]	Time 0.89 (0.89)	Data 0.0 (0.0)	Loss (s) 1.92e+00 (1.92e+00)	Loss (t, false) 8.36e-01 (8.36e-01)	Loss (t, truth) 7.11e-01 (7.11e-01)	Acc (s) 0.92 (0.92)	Acc (t) 0.52 (0.52)	Acc (s, adv) 0.90 (0.90)	Acc (t, adv) 0.51 (0.51)
+Epoch: [11][100/500]	Time 0.89 (0.87)	Data 0.0 (0.0)	Loss (s) 1.78e+00 (1.35e+00)	Loss (t, false) 1.04e+00 (9.77e-01)	Loss (t, truth) 5.62e-01 (5.89e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.53 (0.50)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.51 (0.49)
+Epoch: [11][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.34e+00 (1.32e+00)	Loss (t, false) 1.07e+00 (9.74e-01)	Loss (t, truth) 4.88e-01 (5.87e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.41 (0.50)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.43 (0.49)
+Epoch: [11][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.28e+00 (1.32e+00)	Loss (t, false) 9.81e-01 (9.70e-01)	Loss (t, truth) 6.95e-01 (5.86e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.50 (0.50)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.48 (0.49)
+Epoch: [11][400/500]	Time 0.92 (0.87)	Data 0.0 (0.0)	Loss (s) 1.33e+00 (1.32e+00)	Loss (t, false) 1.06e+00 (9.69e-01)	Loss (t, truth) 5.12e-01 (5.85e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.45 (0.50)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.44 (0.49)
+Test: [  0/100]	Time  0.340 ( 0.340)	Loss 2.47e-01 (2.47e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.214 ( 0.214)	Loss 2.20e+00 (2.20e+00)	all 0.55 (0.55)
+Source: 0.953 Target: 0.581 Target(best): 0.692
+head: 0.048
+shoulder: 0.434
+elbow: 0.590
+wrist: 0.553
+hip: 0.699
+knee: 0.630
+ankle: 0.578
+all: 0.581
+[0.0006326339908391426, 0.0006326339908391426] [0.006326339908391426] [0.006326339908391426]
+Epoch: [12][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.34e+00 (1.34e+00)	Loss (t, false) 9.27e-01 (9.27e-01)	Loss (t, truth) 6.08e-01 (6.08e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.57 (0.57)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.58 (0.58)
+Epoch: [12][100/500]	Time 0.89 (0.88)	Data 0.0 (0.0)	Loss (s) 1.58e+00 (1.32e+00)	Loss (t, false) 1.03e+00 (9.61e-01)	Loss (t, truth) 5.48e-01 (5.75e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.47 (0.49)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.48 (0.48)
+Epoch: [12][200/500]	Time 1.93 (0.87)	Data 1.0 (0.0)	Loss (s) 1.23e+00 (1.31e+00)	Loss (t, false) 7.79e-01 (9.65e-01)	Loss (t, truth) 7.31e-01 (5.75e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.61 (0.50)	Acc (s, adv) 0.93 (0.95)	Acc (t, adv) 0.56 (0.49)
+Epoch: [12][300/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.36e+00 (1.30e+00)	Loss (t, false) 9.55e-01 (9.62e-01)	Loss (t, truth) 5.49e-01 (5.77e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.51 (0.49)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.49 (0.49)
+Epoch: [12][400/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.48e+00 (1.30e+00)	Loss (t, false) 1.09e+00 (9.62e-01)	Loss (t, truth) 4.60e-01 (5.76e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.42 (0.49)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.43 (0.48)
+Test: [  0/100]	Time  0.309 ( 0.309)	Loss 2.34e-01 (2.34e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.195 ( 0.195)	Loss 2.32e+00 (2.32e+00)	all 0.53 (0.53)
+Source: 0.953 Target: 0.579 Target(best): 0.692
+head: 0.041
+shoulder: 0.434
+elbow: 0.588
+wrist: 0.545
+hip: 0.691
+knee: 0.629
+ankle: 0.586
+all: 0.579
+[0.0006182007836876465, 0.0006182007836876465] [0.006182007836876465] [0.006182007836876465]
+Epoch: [13][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.29e+00 (1.29e+00)	Loss (t, false) 1.04e+00 (1.04e+00)	Loss (t, truth) 5.35e-01 (5.35e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.43 (0.43)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.42 (0.42)
+Epoch: [13][100/500]	Time 0.85 (0.88)	Data 0.0 (0.0)	Loss (s) 1.27e+00 (1.27e+00)	Loss (t, false) 1.01e+00 (9.31e-01)	Loss (t, truth) 5.18e-01 (5.99e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.46 (0.49)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.46 (0.48)
+Epoch: [13][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.21e+00 (1.27e+00)	Loss (t, false) 1.12e+00 (9.37e-01)	Loss (t, truth) 5.04e-01 (5.94e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.47 (0.49)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.48 (0.48)
+Epoch: [13][300/500]	Time 0.86 (0.87)	Data 0.0 (0.0)	Loss (s) 1.33e+00 (1.27e+00)	Loss (t, false) 8.99e-01 (9.38e-01)	Loss (t, truth) 5.39e-01 (5.94e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.52 (0.49)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.50 (0.48)
+Epoch: [13][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.29e+00 (1.27e+00)	Loss (t, false) 8.92e-01 (9.37e-01)	Loss (t, truth) 5.85e-01 (5.95e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.49 (0.49)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.49 (0.48)
+Test: [  0/100]	Time  0.309 ( 0.309)	Loss 2.45e-01 (2.45e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.196 ( 0.196)	Loss 2.52e+00 (2.52e+00)	all 0.53 (0.53)
+Source: 0.951 Target: 0.570 Target(best): 0.692
+head: 0.050
+shoulder: 0.406
+elbow: 0.583
+wrist: 0.541
+hip: 0.688
+knee: 0.624
+ankle: 0.578
+all: 0.570
+[0.000604513241701108, 0.000604513241701108] [0.00604513241701108] [0.00604513241701108]
+Epoch: [14][  0/500]	Time 0.88 (0.88)	Data 0.0 (0.0)	Loss (s) 1.26e+00 (1.26e+00)	Loss (t, false) 8.56e-01 (8.56e-01)	Loss (t, truth) 5.95e-01 (5.95e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.52 (0.52)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.50 (0.50)
+Epoch: [14][100/500]	Time 0.89 (0.88)	Data 0.0 (0.0)	Loss (s) 1.04e+00 (1.26e+00)	Loss (t, false) 9.68e-01 (9.40e-01)	Loss (t, truth) 5.76e-01 (5.96e-01)	Acc (s) 0.99 (0.96)	Acc (t) 0.42 (0.49)	Acc (s, adv) 0.98 (0.95)	Acc (t, adv) 0.43 (0.47)
+Epoch: [14][200/500]	Time 0.85 (0.88)	Data 0.0 (0.0)	Loss (s) 1.33e+00 (1.26e+00)	Loss (t, false) 8.73e-01 (9.30e-01)	Loss (t, truth) 6.18e-01 (6.04e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.52 (0.49)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.51 (0.48)
+Epoch: [14][300/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.13e+00 (1.26e+00)	Loss (t, false) 8.28e-01 (9.28e-01)	Loss (t, truth) 6.80e-01 (6.09e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.50 (0.49)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.47 (0.47)
+Epoch: [14][400/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.19e+00 (1.26e+00)	Loss (t, false) 9.89e-01 (9.27e-01)	Loss (t, truth) 5.48e-01 (6.11e-01)	Acc (s) 0.99 (0.96)	Acc (t) 0.45 (0.48)	Acc (s, adv) 0.98 (0.95)	Acc (t, adv) 0.46 (0.47)
+Test: [  0/100]	Time  0.278 ( 0.278)	Loss 2.57e-01 (2.57e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.191 ( 0.191)	Loss 2.55e+00 (2.55e+00)	all 0.52 (0.52)
+Source: 0.950 Target: 0.571 Target(best): 0.692
+head: 0.069
+shoulder: 0.414
+elbow: 0.581
+wrist: 0.536
+hip: 0.689
+knee: 0.623
+ankle: 0.583
+all: 0.571
+[0.0005915125629748815, 0.0005915125629748815] [0.005915125629748815] [0.005915125629748815]
+Epoch: [15][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.14e+00 (1.14e+00)	Loss (t, false) 8.52e-01 (8.52e-01)	Loss (t, truth) 6.57e-01 (6.57e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.43 (0.43)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.41 (0.41)
+Epoch: [15][100/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.14e+00 (1.26e+00)	Loss (t, false) 7.93e-01 (9.27e-01)	Loss (t, truth) 6.08e-01 (6.06e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.54 (0.48)	Acc (s, adv) 0.98 (0.95)	Acc (t, adv) 0.55 (0.47)
+Epoch: [15][200/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.33e+00 (1.24e+00)	Loss (t, false) 8.37e-01 (9.15e-01)	Loss (t, truth) 6.19e-01 (6.18e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.50 (0.48)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.49 (0.47)
+Epoch: [15][300/500]	Time 0.86 (0.87)	Data 0.0 (0.0)	Loss (s) 1.37e+00 (1.25e+00)	Loss (t, false) 1.05e+00 (9.20e-01)	Loss (t, truth) 4.84e-01 (6.16e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.51 (0.48)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.47 (0.47)
+Epoch: [15][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.51e+00 (1.25e+00)	Loss (t, false) 9.26e-01 (9.19e-01)	Loss (t, truth) 6.58e-01 (6.22e-01)	Acc (s) 0.93 (0.96)	Acc (t) 0.47 (0.48)	Acc (s, adv) 0.93 (0.95)	Acc (t, adv) 0.44 (0.46)
+Test: [  0/100]	Time  0.292 ( 0.292)	Loss 2.38e-01 (2.38e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.193 ( 0.193)	Loss 2.30e+00 (2.30e+00)	all 0.50 (0.50)
+Source: 0.952 Target: 0.562 Target(best): 0.692
+head: 0.057
+shoulder: 0.392
+elbow: 0.578
+wrist: 0.537
+hip: 0.679
+knee: 0.623
+ankle: 0.560
+all: 0.562
+[0.0005791460926441344, 0.0005791460926441344] [0.005791460926441345] [0.005791460926441345]
+Epoch: [16][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.40e+00 (1.40e+00)	Loss (t, false) 9.59e-01 (9.59e-01)	Loss (t, truth) 6.46e-01 (6.46e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.37 (0.37)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.35 (0.35)
+Epoch: [16][100/500]	Time 0.83 (0.85)	Data 0.0 (0.0)	Loss (s) 9.94e-01 (1.25e+00)	Loss (t, false) 1.02e+00 (9.09e-01)	Loss (t, truth) 5.57e-01 (6.39e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.48 (0.48)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.47 (0.46)
+Epoch: [16][200/500]	Time 0.90 (0.86)	Data 0.0 (0.0)	Loss (s) 1.21e+00 (1.26e+00)	Loss (t, false) 1.03e+00 (9.24e-01)	Loss (t, truth) 5.79e-01 (6.35e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.41 (0.48)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.40 (0.46)
+Epoch: [16][300/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.13e+00 (1.26e+00)	Loss (t, false) 8.05e-01 (9.25e-01)	Loss (t, truth) 7.41e-01 (6.36e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.47 (0.47)	Acc (s, adv) 0.98 (0.95)	Acc (t, adv) 0.46 (0.45)
+Epoch: [16][400/500]	Time 0.85 (0.86)	Data 0.0 (0.0)	Loss (s) 1.24e+00 (1.26e+00)	Loss (t, false) 1.02e+00 (9.27e-01)	Loss (t, truth) 5.26e-01 (6.37e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.48 (0.47)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.46 (0.45)
+Test: [  0/100]	Time  0.331 ( 0.331)	Loss 2.46e-01 (2.46e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.184 ( 0.184)	Loss 2.47e+00 (2.47e+00)	all 0.49 (0.49)
+Source: 0.951 Target: 0.537 Target(best): 0.692
+head: 0.050
+shoulder: 0.385
+elbow: 0.552
+wrist: 0.521
+hip: 0.648
+knee: 0.596
+ankle: 0.518
+all: 0.537
+[0.0005673665309870822, 0.0005673665309870822] [0.005673665309870822] [0.005673665309870822]
+Epoch: [17][  0/500]	Time 0.86 (0.86)	Data 0.0 (0.0)	Loss (s) 1.12e+00 (1.12e+00)	Loss (t, false) 9.69e-01 (9.69e-01)	Loss (t, truth) 6.41e-01 (6.41e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.45 (0.45)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.41 (0.41)
+Epoch: [17][100/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.35e+00 (1.29e+00)	Loss (t, false) 6.61e-01 (9.29e-01)	Loss (t, truth) 8.69e-01 (6.39e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.49 (0.47)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.45 (0.45)
+Epoch: [17][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.15e+00 (1.28e+00)	Loss (t, false) 1.14e+00 (9.38e-01)	Loss (t, truth) 5.16e-01 (6.33e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.46 (0.46)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.43 (0.45)
+Epoch: [17][300/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.24e+00 (1.27e+00)	Loss (t, false) 8.97e-01 (9.36e-01)	Loss (t, truth) 6.25e-01 (6.33e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.44 (0.46)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.43 (0.44)
+Epoch: [17][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.17e+00 (1.27e+00)	Loss (t, false) 1.08e+00 (9.38e-01)	Loss (t, truth) 5.50e-01 (6.31e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.47 (0.46)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.46 (0.44)
+Test: [  0/100]	Time  0.313 ( 0.313)	Loss 2.68e-01 (2.68e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.200 ( 0.200)	Loss 2.47e+00 (2.47e+00)	all 0.50 (0.50)
+Source: 0.950 Target: 0.550 Target(best): 0.692
+head: 0.065
+shoulder: 0.378
+elbow: 0.569
+wrist: 0.527
+hip: 0.668
+knee: 0.601
+ankle: 0.558
+all: 0.550
+[0.0005561312617629561, 0.0005561312617629561] [0.005561312617629561] [0.005561312617629561]
+Epoch: [18][  0/500]	Time 0.86 (0.86)	Data 0.0 (0.0)	Loss (s) 1.42e+00 (1.42e+00)	Loss (t, false) 9.21e-01 (9.21e-01)	Loss (t, truth) 6.08e-01 (6.08e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.42 (0.42)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.42 (0.42)
+Epoch: [18][100/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.22e+00 (1.28e+00)	Loss (t, false) 1.08e+00 (9.39e-01)	Loss (t, truth) 4.90e-01 (6.27e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.39 (0.46)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.39 (0.44)
+Epoch: [18][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.26e+00 (1.27e+00)	Loss (t, false) 1.04e+00 (9.37e-01)	Loss (t, truth) 5.60e-01 (6.26e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.49 (0.46)	Acc (s, adv) 0.92 (0.95)	Acc (t, adv) 0.47 (0.44)
+Epoch: [18][300/500]	Time 1.85 (0.87)	Data 0.9 (0.0)	Loss (s) 1.58e+00 (1.27e+00)	Loss (t, false) 1.03e+00 (9.40e-01)	Loss (t, truth) 4.85e-01 (6.22e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.49 (0.46)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.50 (0.44)
+Epoch: [18][400/500]	Time 0.89 (0.86)	Data 0.0 (0.0)	Loss (s) 1.52e+00 (1.27e+00)	Loss (t, false) 9.77e-01 (9.39e-01)	Loss (t, truth) 5.65e-01 (6.24e-01)	Acc (s) 0.92 (0.96)	Acc (t) 0.42 (0.46)	Acc (s, adv) 0.92 (0.95)	Acc (t, adv) 0.41 (0.44)
+Test: [  0/100]	Time  0.309 ( 0.309)	Loss 2.57e-01 (2.57e-01)	all 0.95 (0.95)
+Test: [ 0/63]	Time  0.197 ( 0.197)	Loss 2.58e+00 (2.58e+00)	all 0.51 (0.51)
+Source: 0.949 Target: 0.566 Target(best): 0.692
+head: 0.049
+shoulder: 0.407
+elbow: 0.593
+wrist: 0.541
+hip: 0.684
+knee: 0.604
+ankle: 0.571
+all: 0.566
+[0.0005454017799054858, 0.0005454017799054858] [0.005454017799054858] [0.005454017799054858]
+Epoch: [19][  0/500]	Time 0.86 (0.86)	Data 0.0 (0.0)	Loss (s) 1.12e+00 (1.12e+00)	Loss (t, false) 9.73e-01 (9.73e-01)	Loss (t, truth) 5.75e-01 (5.75e-01)	Acc (s) 0.98 (0.98)	Acc (t) 0.39 (0.39)	Acc (s, adv) 0.98 (0.98)	Acc (t, adv) 0.37 (0.37)
+Epoch: [19][100/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.52e+00 (1.26e+00)	Loss (t, false) 8.29e-01 (9.26e-01)	Loss (t, truth) 7.39e-01 (6.45e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.50 (0.45)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.48 (0.43)
+Epoch: [19][200/500]	Time 0.84 (0.88)	Data 0.0 (0.0)	Loss (s) 1.02e+00 (1.26e+00)	Loss (t, false) 8.32e-01 (9.29e-01)	Loss (t, truth) 8.15e-01 (6.44e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.49 (0.45)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.43 (0.43)
+Epoch: [19][300/500]	Time 0.85 (0.88)	Data 0.0 (0.0)	Loss (s) 9.31e-01 (1.26e+00)	Loss (t, false) 9.89e-01 (9.33e-01)	Loss (t, truth) 6.48e-01 (6.44e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.39 (0.44)	Acc (s, adv) 0.98 (0.95)	Acc (t, adv) 0.41 (0.43)
+Epoch: [19][400/500]	Time 0.83 (0.88)	Data 0.0 (0.0)	Loss (s) 1.66e+00 (1.27e+00)	Loss (t, false) 9.88e-01 (9.46e-01)	Loss (t, truth) 6.39e-01 (6.35e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.48 (0.44)	Acc (s, adv) 0.93 (0.95)	Acc (t, adv) 0.45 (0.43)
+Test: [  0/100]	Time  0.294 ( 0.294)	Loss 2.50e-01 (2.50e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.198 ( 0.198)	Loss 2.72e+00 (2.72e+00)	all 0.52 (0.52)
+Source: 0.950 Target: 0.556 Target(best): 0.692
+head: 0.047
+shoulder: 0.413
+elbow: 0.578
+wrist: 0.537
+hip: 0.663
+knee: 0.593
+ankle: 0.553
+all: 0.556
+[0.0005351432017512244, 0.0005351432017512244] [0.005351432017512244] [0.005351432017512244]
+Epoch: [20][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.75e+00 (1.75e+00)	Loss (t, false) 1.02e+00 (1.02e+00)	Loss (t, truth) 5.61e-01 (5.61e-01)	Acc (s) 0.94 (0.94)	Acc (t) 0.43 (0.43)	Acc (s, adv) 0.93 (0.93)	Acc (t, adv) 0.43 (0.43)
+Epoch: [20][100/500]	Time 0.83 (0.85)	Data 0.0 (0.0)	Loss (s) 1.29e+00 (1.28e+00)	Loss (t, false) 9.72e-01 (9.54e-01)	Loss (t, truth) 6.01e-01 (6.28e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.40 (0.43)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.40 (0.42)
+Epoch: [20][200/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 9.80e-01 (1.28e+00)	Loss (t, false) 9.81e-01 (9.54e-01)	Loss (t, truth) 6.41e-01 (6.27e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.44 (0.43)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.44 (0.42)
+Epoch: [20][300/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.49e+00 (1.28e+00)	Loss (t, false) 1.08e+00 (9.68e-01)	Loss (t, truth) 5.25e-01 (6.16e-01)	Acc (s) 0.90 (0.96)	Acc (t) 0.31 (0.43)	Acc (s, adv) 0.90 (0.95)	Acc (t, adv) 0.30 (0.42)
+Epoch: [20][400/500]	Time 0.85 (0.86)	Data 0.0 (0.0)	Loss (s) 1.11e+00 (1.27e+00)	Loss (t, false) 1.07e+00 (9.70e-01)	Loss (t, truth) 5.48e-01 (6.11e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.48 (0.43)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.47 (0.42)
+Test: [  0/100]	Time  0.267 ( 0.267)	Loss 2.65e-01 (2.65e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.197 ( 0.197)	Loss 2.82e+00 (2.82e+00)	all 0.51 (0.51)
+Source: 0.947 Target: 0.547 Target(best): 0.692
+head: 0.057
+shoulder: 0.395
+elbow: 0.572
+wrist: 0.523
+hip: 0.658
+knee: 0.585
+ankle: 0.549
+all: 0.547
+[0.0005253238441716659, 0.0005253238441716659] [0.005253238441716659] [0.005253238441716659]
+Epoch: [21][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.25e+00 (1.25e+00)	Loss (t, false) 9.96e-01 (9.96e-01)	Loss (t, truth) 6.17e-01 (6.17e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.38 (0.38)	Acc (s, adv) 0.93 (0.93)	Acc (t, adv) 0.37 (0.37)
+Epoch: [21][100/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.50e+00 (1.29e+00)	Loss (t, false) 1.08e+00 (9.87e-01)	Loss (t, truth) 5.15e-01 (5.92e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.42 (0.43)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.40 (0.41)
+Epoch: [21][200/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.24e+00 (1.28e+00)	Loss (t, false) 8.95e-01 (9.87e-01)	Loss (t, truth) 6.80e-01 (5.91e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.46 (0.42)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.46 (0.41)
+Epoch: [21][300/500]	Time 0.91 (0.87)	Data 0.0 (0.0)	Loss (s) 1.32e+00 (1.28e+00)	Loss (t, false) 9.33e-01 (9.81e-01)	Loss (t, truth) 6.17e-01 (5.95e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.50 (0.42)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.47 (0.41)
+Epoch: [21][400/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.45e+00 (1.28e+00)	Loss (t, false) 9.18e-01 (9.79e-01)	Loss (t, truth) 6.04e-01 (5.96e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.48 (0.42)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.47 (0.41)
+Test: [  0/100]	Time  0.317 ( 0.317)	Loss 2.53e-01 (2.53e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.196 ( 0.196)	Loss 2.61e+00 (2.61e+00)	all 0.54 (0.54)
+Source: 0.951 Target: 0.552 Target(best): 0.692
+head: 0.069
+shoulder: 0.412
+elbow: 0.584
+wrist: 0.532
+hip: 0.658
+knee: 0.579
+ankle: 0.548
+all: 0.552
+[0.0005159148615011639, 0.0005159148615011639] [0.005159148615011639] [0.005159148615011639]
+Epoch: [22][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.32e+00 (1.32e+00)	Loss (t, false) 9.10e-01 (9.10e-01)	Loss (t, truth) 6.00e-01 (6.00e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.36 (0.36)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.36 (0.36)
+Epoch: [22][100/500]	Time 0.96 (0.86)	Data 0.0 (0.0)	Loss (s) 1.13e+00 (1.27e+00)	Loss (t, false) 1.06e+00 (9.89e-01)	Loss (t, truth) 5.60e-01 (5.77e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.42 (0.42)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.39 (0.41)
+Epoch: [22][200/500]	Time 0.88 (0.86)	Data 0.0 (0.0)	Loss (s) 1.08e+00 (1.27e+00)	Loss (t, false) 1.05e+00 (9.76e-01)	Loss (t, truth) 5.15e-01 (5.85e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.39 (0.42)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.39 (0.41)
+Epoch: [22][300/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.13e+00 (1.26e+00)	Loss (t, false) 9.65e-01 (9.66e-01)	Loss (t, truth) 5.85e-01 (5.93e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.44 (0.42)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.40 (0.40)
+Epoch: [22][400/500]	Time 0.85 (0.86)	Data 0.0 (0.0)	Loss (s) 1.11e+00 (1.26e+00)	Loss (t, false) 1.17e+00 (9.71e-01)	Loss (t, truth) 5.02e-01 (5.92e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.37 (0.42)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.38 (0.40)
+Test: [  0/100]	Time  0.271 ( 0.271)	Loss 2.61e-01 (2.61e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.177 ( 0.177)	Loss 2.41e+00 (2.41e+00)	all 0.50 (0.50)
+Source: 0.948 Target: 0.521 Target(best): 0.692
+head: 0.032
+shoulder: 0.386
+elbow: 0.556
+wrist: 0.506
+hip: 0.624
+knee: 0.560
+ankle: 0.497
+all: 0.521
+[0.0005068899311607321, 0.0005068899311607321] [0.0050688993116073215] [0.0050688993116073215]
+Epoch: [23][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.28e+00 (1.28e+00)	Loss (t, false) 7.85e-01 (7.85e-01)	Loss (t, truth) 7.80e-01 (7.80e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.48 (0.48)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.41 (0.41)
+Epoch: [23][100/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.14e+00 (1.26e+00)	Loss (t, false) 8.23e-01 (9.71e-01)	Loss (t, truth) 6.80e-01 (5.85e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.49 (0.41)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.45 (0.40)
+Epoch: [23][200/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.46e+00 (1.27e+00)	Loss (t, false) 7.82e-01 (9.78e-01)	Loss (t, truth) 7.24e-01 (5.81e-01)	Acc (s) 0.91 (0.96)	Acc (t) 0.54 (0.41)	Acc (s, adv) 0.91 (0.95)	Acc (t, adv) 0.50 (0.40)
+Epoch: [23][300/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.03e+00 (1.26e+00)	Loss (t, false) 9.57e-01 (9.73e-01)	Loss (t, truth) 5.86e-01 (5.85e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.36 (0.41)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.35 (0.40)
+Epoch: [23][400/500]	Time 0.83 (0.86)	Data 0.0 (0.0)	Loss (s) 1.22e+00 (1.26e+00)	Loss (t, false) 1.08e+00 (9.77e-01)	Loss (t, truth) 5.08e-01 (5.80e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.41 (0.41)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.38 (0.40)
+Test: [  0/100]	Time  0.295 ( 0.295)	Loss 2.62e-01 (2.62e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.195 ( 0.195)	Loss 2.93e+00 (2.93e+00)	all 0.51 (0.51)
+Source: 0.946 Target: 0.545 Target(best): 0.692
+head: 0.045
+shoulder: 0.397
+elbow: 0.566
+wrist: 0.516
+hip: 0.663
+knee: 0.576
+ankle: 0.551
+all: 0.545
+[0.0004982249804853709, 0.0004982249804853709] [0.004982249804853708] [0.004982249804853708]
+Epoch: [24][  0/500]	Time 0.90 (0.90)	Data 0.0 (0.0)	Loss (s) 9.49e-01 (9.49e-01)	Loss (t, false) 1.03e+00 (1.03e+00)	Loss (t, truth) 5.15e-01 (5.15e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.48 (0.48)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.47 (0.47)
+Epoch: [24][100/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.09e+00 (1.25e+00)	Loss (t, false) 8.46e-01 (9.86e-01)	Loss (t, truth) 6.53e-01 (5.65e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.52 (0.40)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.50 (0.39)
+Epoch: [24][200/500]	Time 0.84 (0.85)	Data 0.0 (0.0)	Loss (s) 1.32e+00 (1.26e+00)	Loss (t, false) 9.02e-01 (9.97e-01)	Loss (t, truth) 5.98e-01 (5.59e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.49 (0.40)	Acc (s, adv) 0.97 (0.95)	Acc (t, adv) 0.46 (0.39)
+Epoch: [24][300/500]	Time 0.86 (0.86)	Data 0.0 (0.0)	Loss (s) 1.36e+00 (1.26e+00)	Loss (t, false) 9.14e-01 (9.99e-01)	Loss (t, truth) 6.17e-01 (5.57e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.39 (0.41)	Acc (s, adv) 0.94 (0.95)	Acc (t, adv) 0.38 (0.39)
+Epoch: [24][400/500]	Time 1.90 (0.86)	Data 1.0 (0.0)	Loss (s) 1.26e+00 (1.26e+00)	Loss (t, false) 1.02e+00 (9.95e-01)	Loss (t, truth) 4.99e-01 (5.59e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.47 (0.40)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.45 (0.39)
+Test: [  0/100]	Time  0.270 ( 0.270)	Loss 2.39e-01 (2.39e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.195 ( 0.195)	Loss 2.77e+00 (2.77e+00)	all 0.51 (0.51)
+Source: 0.951 Target: 0.554 Target(best): 0.692
+head: 0.036
+shoulder: 0.426
+elbow: 0.569
+wrist: 0.521
+hip: 0.660
+knee: 0.590
+ankle: 0.556
+all: 0.554
+[0.0004898979485566356, 0.0004898979485566356] [0.004898979485566356] [0.004898979485566356]
+Epoch: [25][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.43e+00 (1.43e+00)	Loss (t, false) 1.04e+00 (1.04e+00)	Loss (t, truth) 5.46e-01 (5.46e-01)	Acc (s) 0.94 (0.94)	Acc (t) 0.41 (0.41)	Acc (s, adv) 0.93 (0.93)	Acc (t, adv) 0.42 (0.42)
+Epoch: [25][100/500]	Time 0.85 (0.88)	Data 0.0 (0.0)	Loss (s) 1.29e+00 (1.26e+00)	Loss (t, false) 9.78e-01 (9.85e-01)	Loss (t, truth) 6.11e-01 (5.61e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.36 (0.40)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.35 (0.39)
+Epoch: [25][200/500]	Time 0.92 (0.87)	Data 0.0 (0.0)	Loss (s) 1.09e+00 (1.24e+00)	Loss (t, false) 9.06e-01 (9.96e-01)	Loss (t, truth) 5.83e-01 (5.52e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.49 (0.40)	Acc (s, adv) 0.97 (0.96)	Acc (t, adv) 0.46 (0.39)
+Epoch: [25][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.12e+00 (1.25e+00)	Loss (t, false) 9.79e-01 (9.99e-01)	Loss (t, truth) 5.53e-01 (5.49e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.40 (0.40)	Acc (s, adv) 0.94 (0.96)	Acc (t, adv) 0.39 (0.39)
+Epoch: [25][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.07e+00 (1.24e+00)	Loss (t, false) 1.07e+00 (9.94e-01)	Loss (t, truth) 4.95e-01 (5.52e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.44 (0.40)	Acc (s, adv) 0.96 (0.96)	Acc (t, adv) 0.44 (0.39)
+Test: [  0/100]	Time  0.266 ( 0.266)	Loss 2.41e-01 (2.41e-01)	all 0.97 (0.97)
+Test: [ 0/63]	Time  0.179 ( 0.179)	Loss 2.71e+00 (2.71e+00)	all 0.50 (0.50)
+Source: 0.949 Target: 0.546 Target(best): 0.692
+head: 0.034
+shoulder: 0.404
+elbow: 0.565
+wrist: 0.512
+hip: 0.654
+knee: 0.583
+ankle: 0.556
+all: 0.546
+[0.00048188857788938655, 0.00048188857788938655] [0.004818885778893865] [0.004818885778893865]
+Epoch: [26][  0/500]	Time 0.85 (0.85)	Data 0.0 (0.0)	Loss (s) 1.12e+00 (1.12e+00)	Loss (t, false) 1.00e+00 (1.00e+00)	Loss (t, truth) 5.96e-01 (5.96e-01)	Acc (s) 0.95 (0.95)	Acc (t) 0.31 (0.31)	Acc (s, adv) 0.94 (0.94)	Acc (t, adv) 0.32 (0.32)
+Epoch: [26][100/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.33e+00 (1.25e+00)	Loss (t, false) 1.16e+00 (9.82e-01)	Loss (t, truth) 4.14e-01 (5.62e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.36 (0.39)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.37 (0.38)
+Epoch: [26][200/500]	Time 0.84 (0.86)	Data 0.0 (0.0)	Loss (s) 1.24e+00 (1.25e+00)	Loss (t, false) 1.07e+00 (9.89e-01)	Loss (t, truth) 4.73e-01 (5.53e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.33 (0.39)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.32 (0.38)
+Epoch: [26][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.14e+00 (1.25e+00)	Loss (t, false) 1.05e+00 (9.95e-01)	Loss (t, truth) 5.32e-01 (5.50e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.38 (0.39)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.38 (0.38)
+Epoch: [26][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.49e+00 (1.25e+00)	Loss (t, false) 9.76e-01 (9.94e-01)	Loss (t, truth) 5.61e-01 (5.49e-01)	Acc (s) 0.93 (0.96)	Acc (t) 0.43 (0.39)	Acc (s, adv) 0.92 (0.95)	Acc (t, adv) 0.41 (0.38)
+Test: [  0/100]	Time  0.315 ( 0.315)	Loss 2.33e-01 (2.33e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.210 ( 0.210)	Loss 2.72e+00 (2.72e+00)	all 0.53 (0.53)
+Source: 0.950 Target: 0.547 Target(best): 0.692
+head: 0.034
+shoulder: 0.418
+elbow: 0.568
+wrist: 0.512
+hip: 0.659
+knee: 0.575
+ankle: 0.551
+all: 0.547
+[0.00047417823167337467, 0.00047417823167337467] [0.004741782316733747] [0.004741782316733747]
+Epoch: [27][  0/500]	Time 0.86 (0.86)	Data 0.0 (0.0)	Loss (s) 1.42e+00 (1.42e+00)	Loss (t, false) 1.01e+00 (1.01e+00)	Loss (t, truth) 5.28e-01 (5.28e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.38 (0.38)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.34 (0.34)
+Epoch: [27][100/500]	Time 0.89 (0.87)	Data 0.0 (0.0)	Loss (s) 1.21e+00 (1.26e+00)	Loss (t, false) 1.01e+00 (9.95e-01)	Loss (t, truth) 5.46e-01 (5.42e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.40 (0.39)	Acc (s, adv) 0.96 (0.95)	Acc (t, adv) 0.43 (0.38)
+Epoch: [27][200/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.53e+00 (1.25e+00)	Loss (t, false) 9.56e-01 (9.96e-01)	Loss (t, truth) 5.01e-01 (5.41e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.41 (0.39)	Acc (s, adv) 0.95 (0.95)	Acc (t, adv) 0.39 (0.38)
+Epoch: [27][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.30e+00 (1.25e+00)	Loss (t, false) 9.57e-01 (1.00e+00)	Loss (t, truth) 5.72e-01 (5.38e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.39 (0.39)	Acc (s, adv) 0.94 (0.96)	Acc (t, adv) 0.39 (0.38)
+Epoch: [27][400/500]	Time 0.88 (0.87)	Data 0.0 (0.0)	Loss (s) 9.82e-01 (1.25e+00)	Loss (t, false) 1.06e+00 (9.99e-01)	Loss (t, truth) 5.15e-01 (5.38e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.35 (0.39)	Acc (s, adv) 0.98 (0.96)	Acc (t, adv) 0.35 (0.38)
+Test: [  0/100]	Time  0.296 ( 0.296)	Loss 2.36e-01 (2.36e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.194 ( 0.194)	Loss 2.76e+00 (2.76e+00)	all 0.53 (0.53)
+Source: 0.950 Target: 0.550 Target(best): 0.692
+head: 0.035
+shoulder: 0.427
+elbow: 0.569
+wrist: 0.508
+hip: 0.665
+knee: 0.580
+ankle: 0.553
+all: 0.550
+[0.0004667497329663587, 0.0004667497329663587] [0.004667497329663587] [0.004667497329663587]
+Epoch: [28][  0/500]	Time 0.90 (0.90)	Data 0.0 (0.0)	Loss (s) 1.28e+00 (1.28e+00)	Loss (t, false) 8.89e-01 (8.89e-01)	Loss (t, truth) 6.10e-01 (6.10e-01)	Acc (s) 0.97 (0.97)	Acc (t) 0.39 (0.39)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.37 (0.37)
+Epoch: [28][100/500]	Time 0.83 (0.87)	Data 0.0 (0.0)	Loss (s) 1.20e+00 (1.25e+00)	Loss (t, false) 1.03e+00 (1.00e+00)	Loss (t, truth) 4.96e-01 (5.31e-01)	Acc (s) 0.96 (0.96)	Acc (t) 0.36 (0.39)	Acc (s, adv) 0.95 (0.96)	Acc (t, adv) 0.36 (0.38)
+Epoch: [28][200/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.09e+00 (1.25e+00)	Loss (t, false) 1.06e+00 (1.00e+00)	Loss (t, truth) 4.99e-01 (5.32e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.39 (0.39)	Acc (s, adv) 0.97 (0.96)	Acc (t, adv) 0.38 (0.38)
+Epoch: [28][300/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 9.66e-01 (1.25e+00)	Loss (t, false) 1.01e+00 (1.00e+00)	Loss (t, truth) 5.83e-01 (5.29e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.38 (0.39)	Acc (s, adv) 0.98 (0.96)	Acc (t, adv) 0.37 (0.38)
+Epoch: [28][400/500]	Time 0.85 (0.87)	Data 0.0 (0.0)	Loss (s) 1.18e+00 (1.24e+00)	Loss (t, false) 8.57e-01 (1.00e+00)	Loss (t, truth) 6.37e-01 (5.29e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.44 (0.39)	Acc (s, adv) 0.94 (0.96)	Acc (t, adv) 0.43 (0.38)
+Test: [  0/100]	Time  0.306 ( 0.306)	Loss 2.38e-01 (2.38e-01)	all 0.95 (0.95)
+Test: [ 0/63]	Time  0.194 ( 0.194)	Loss 2.82e+00 (2.82e+00)	all 0.50 (0.50)
+Source: 0.949 Target: 0.543 Target(best): 0.692
+head: 0.030
+shoulder: 0.412
+elbow: 0.560
+wrist: 0.512
+hip: 0.659
+knee: 0.572
+ankle: 0.542
+all: 0.543
+[0.00045958722280686504, 0.00045958722280686504] [0.004595872228068651] [0.004595872228068651]
+Epoch: [29][  0/500]	Time 0.84 (0.84)	Data 0.0 (0.0)	Loss (s) 1.26e+00 (1.26e+00)	Loss (t, false) 9.73e-01 (9.73e-01)	Loss (t, truth) 4.94e-01 (4.94e-01)	Acc (s) 0.98 (0.98)	Acc (t) 0.35 (0.35)	Acc (s, adv) 0.97 (0.97)	Acc (t, adv) 0.33 (0.33)
+Epoch: [29][100/500]	Time 0.88 (0.87)	Data 0.0 (0.0)	Loss (s) 1.02e+00 (1.24e+00)	Loss (t, false) 9.36e-01 (1.01e+00)	Loss (t, truth) 6.16e-01 (5.17e-01)	Acc (s) 0.97 (0.96)	Acc (t) 0.40 (0.39)	Acc (s, adv) 0.97 (0.96)	Acc (t, adv) 0.35 (0.38)
+Epoch: [29][200/500]	Time 0.89 (0.87)	Data 0.0 (0.0)	Loss (s) 1.43e+00 (1.25e+00)	Loss (t, false) 9.07e-01 (1.01e+00)	Loss (t, truth) 5.85e-01 (5.20e-01)	Acc (s) 0.95 (0.96)	Acc (t) 0.36 (0.39)	Acc (s, adv) 0.94 (0.96)	Acc (t, adv) 0.35 (0.38)
+Epoch: [29][300/500]	Time 0.89 (0.87)	Data 0.0 (0.0)	Loss (s) 1.48e+00 (1.26e+00)	Loss (t, false) 9.28e-01 (1.01e+00)	Loss (t, truth) 6.03e-01 (5.20e-01)	Acc (s) 0.94 (0.96)	Acc (t) 0.43 (0.39)	Acc (s, adv) 0.93 (0.96)	Acc (t, adv) 0.41 (0.38)
+Epoch: [29][400/500]	Time 0.84 (0.87)	Data 0.0 (0.0)	Loss (s) 1.54e+00 (1.25e+00)	Loss (t, false) 9.82e-01 (1.01e+00)	Loss (t, truth) 5.12e-01 (5.21e-01)	Acc (s) 0.98 (0.96)	Acc (t) 0.42 (0.39)	Acc (s, adv) 0.97 (0.96)	Acc (t, adv) 0.42 (0.38)
+Test: [  0/100]	Time  0.364 ( 0.364)	Loss 2.45e-01 (2.45e-01)	all 0.96 (0.96)
+Test: [ 0/63]	Time  0.197 ( 0.197)	Loss 2.83e+00 (2.83e+00)	all 0.51 (0.51)
+Source: 0.947 Target: 0.541 Target(best): 0.692
+head: 0.031
+shoulder: 0.420
+elbow: 0.554
+wrist: 0.505
+hip: 0.661
+knee: 0.569
+ankle: 0.534
+all: 0.541
