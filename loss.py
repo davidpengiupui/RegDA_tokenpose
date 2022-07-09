@@ -3,8 +3,35 @@ Modified from https://github.com/microsoft/human-pose-estimation.pytorch
 @author: Junguang Jiang
 @contact: JiangJunguang1123@outlook.com
 """
+import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
+from .metric import get_max_preds_torch
+
+def oks_loss(pred_hm, gt_hm, weight, num_keypoints):
+    sigmas = torch.Tensor(np.array([1.] * num_keypoints))
+    var = (sigmas * 2) ** 2
+    area = torch.Tensor(np.array([256*256]))
+    
+    pred = get_max_preds_torch(pred_hm)
+    gt = get_max_preds_torch(gt_hm)
+    
+    kpt_preds = pred.reshape(-1, pred.size(-1) // 2, 2)
+    kpt_gts = gt.reshape(-1, gt.size(-1) // 2, 2)
+
+    squared_distance = (kpt_preds[:, :, 0] - kpt_gts[:, :, 0]) ** 2 + \
+        (kpt_preds[:, :, 1] - kpt_gts[:, :, 1]) ** 2
+    #assert (kpt_valids.sum(-1) > 0).all()
+    squared_distance0 = squared_distance / (
+        area[:, None] * var[None, :] * 2)
+    squared_distance1 = torch.exp(-squared_distance0)
+    squared_distance1 = squared_distance1 * weight #kpt_valids
+    oks = squared_distance1.sum(dim=1) / weight.sum(dim=1)
+    
+    loss = -oks.log()
+    
+    return loss
+ 
 
 
 class JointsMSELoss(nn.Module):
