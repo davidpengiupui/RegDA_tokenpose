@@ -9,7 +9,7 @@ import torch
 def get_max_preds_torch(batch_heatmaps):
     '''
     get predictions from score maps
-    heatmaps: numpy.ndarray([batch_size, num_joints, height, width])
+    heatmaps: torch.Tensor([batch_size, num_joints, height, width])
     '''
     #assert isinstance(batch_heatmaps, torch.tensor), \
         #'batch_heatmaps should be numpy.ndarray'
