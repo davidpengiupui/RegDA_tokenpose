@@ -21,7 +21,7 @@ from model import PoseResNet2d as RegDAPoseResNet, \
     PseudoLabelGenerator2d, RegressionDisparity # finish
 import models as models #finish
 from network import Upsampling, PoseResNet # finish
-from loss import JointsKLLoss # finish
+from loss import JointsKLLoss, oks_loss # finish
 import dataset as datasets # finish
 import transforms as T # finish
 from transforms import Denormalize # finish
@@ -328,14 +328,18 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         optimizer_h_adv.zero_grad()
         y_t, y_t_adv = model(x_t)
         loss_ground_false = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='max')
-        loss_ground_false.backward()
+        loss_oks_false = oks_loss(y_t, y_t_adv, weight_t, num_keypoints=21)
+        loss_false = loss_ground_false + loss_oks_false
+        loss_false.backward()
         optimizer_h_adv.step()
 
         # Step C train feature extractor to minimize regression disparity
         optimizer_f.zero_grad()
         y_t, y_t_adv = model(x_t)
         loss_ground_truth = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='min')
-        loss_ground_truth.backward()
+        loss_oks_truth = oks_loss(y_t, y_t_adv, weight_t, num_keypoints=21)
+        loss_truth = loss_ground_truth + loss_oks_truth
+        loss_truth.backward()
         optimizer_f.step()
 
         # do update step
