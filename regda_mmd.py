@@ -21,7 +21,7 @@ from model import PoseResNet2d as RegDAPoseResNet, \
     PseudoLabelGenerator2d, RegressionDisparity # finish
 import models as models #finish
 from network import Upsampling, PoseResNet # finish
-from loss import JointsKLLoss, oks_loss # finish
+from loss import JointsKLLoss, oks_loss, mmd_loss # finish
 import dataset as datasets # finish
 import transforms as T # finish
 from transforms import Denormalize # finish
