@@ -328,8 +328,9 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         optimizer_h_adv.zero_grad()
         y_t, y_t_adv = model(x_t)
         loss_ground_false = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='max')
-        loss_oks_false = oks_loss(y_t, y_t_adv, weight_t, num_keypoints=21)
-        loss_false = loss_ground_false + loss_oks_false
+        #loss_oks_false = oks_loss(y_t, y_t_adv, weight_t, num_keypoints=21)
+        loss_mmd_false = mmd_loss(y_t, y_t_adv, weight_t)
+        loss_false = loss_ground_false + loss_mmd_false
         loss_false.backward()
         optimizer_h_adv.step()
 
@@ -337,8 +338,9 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         optimizer_f.zero_grad()
         y_t, y_t_adv = model(x_t)
         loss_ground_truth = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='min')
-        loss_oks_truth = oks_loss(y_t, y_t_adv, weight_t, num_keypoints=21)
-        loss_truth = loss_ground_truth + loss_oks_truth
+        #loss_oks_truth = oks_loss(y_t, y_t_adv, weight_t, num_keypoints=21)
+        loss_mmd_truth = mmd_loss(y_t, y_t_adv, weight_t)
+        loss_truth = loss_ground_truth + loss_mmd_truth
         loss_truth.backward()
         optimizer_f.step()
 
