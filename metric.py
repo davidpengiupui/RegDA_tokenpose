@@ -5,6 +5,7 @@
 # TODO: add documentation
 import numpy as np
 import torch
+import torchvision
 
 def taylor(hm, coord):
     heatmap_height = hm.shape(0)
@@ -28,7 +29,7 @@ def taylor(hm, coord):
             #offset = -hessianinv * derivative
             offset = - torch.matmul(hessianinv, derivative)
             #offset = np.squeeze(np.array(offset.T), axis=0)
-            offset = torch.tranpose(offset,0,1).squeeze(0)
+            offset = torch.transpose(offset,0,1).squeeze(0)
             coord += offset
     return coord
 
@@ -41,13 +42,46 @@ def gaussian_blur(hm, kernel):
     width = hm.shape(3)
     for i in range(batch_size):
         for j in range(num_joints):
-            origin_max = np.max(hm[i,j])
-            dr = np.zeros((height + 2 * border, width + 2 * border))
-            dr[border: -border, border: -border] = hm[i,j].copy()
-            dr = cv2.GaussianBlur(dr, (kernel, kernel), 0)
-            hm[i,j] = dr[border: -border, border: -border].copy()
-            hm[i,j] *= origin_max / np.max(hm[i,j])
+            #origin_max = np.max(hm[i,j])
+            origin_max = torch.max(hm[i,j,:,:])
+            #dr = np.zeros((height + 2 * border, width + 2 * border))
+            dr = torch.zeros((height + 2 * border, width + 2 * border))
+            #dr[border: -border, border: -border] = hm[i,j].copy()
+            dr[border: -border, border: -border,:,:] = hm[i,j,:,:].copy()
+            #dr = cv2.GaussianBlur(dr, (kernel, kernel), 0)
+            dr = torchvision.transforms.GaussianBlur(kernel_size=(kernel, kernel))(dr)
+            #hm[i,j] = dr[border: -border, border: -border].copy()
+            hm[i,j,:,:] = dr[border: -border, border: -border,:,:].copy()
+            #hm[i,j] *= origin_max / np.max(hm[i,j])
+            hm[i,j] *= origin_max / torch.max(hm[i,j,:,:])
     return hm
+
+def get_max_preds_dark(hm):
+    coords, maxvals = get_max_preds_torch(hm)
+    heatmap_height = hm.shape(2)
+    heatmap_width = hm.shape(3)
+
+    # post-processing
+    hm = gaussian_blur(hm, 11)
+    #hm = np.maximum(hm, 1e-10)
+    hm = torch.maximum(hm, 1e-10)
+    #hm = np.log(hm)
+    hm = torch.log(hm)
+    for n in range(coords.shape[0]):
+        for p in range(coords.shape[1]):
+            coords[n,p] = taylor(hm[n][p], coords[n][p])
+
+    preds = coords.copy()
+
+    # Transform back
+    '''
+    for i in range(coords.shape[0]):
+        preds[i] = transform_preds(
+            coords[i], center[i], scale[i], [heatmap_width, heatmap_height]
+        )
+    '''
+
+    return preds, maxvals
 
 def get_max_preds_torch(batch_heatmaps):
     '''
