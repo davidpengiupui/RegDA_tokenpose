@@ -15,6 +15,9 @@ CUDA_VISIBLE_DEVICES=0 python regda.py data/RHD data/H3D_crop \
     
 CUDA_VISIBLE_DEVICES=1 python regda.py data/SURREAL data/LSP \
     -s SURREAL -t LSP --seed 0 --debug --log logs/regda/surreal2lsp
+    
+CUDA_VISIBLE_DEVICES=2 python regda.py data/SURREAL data/HUMAN36M \
+    -s SURREAL -t HUMAN36M --seed 0 --debug --log logs/regda/surreal2human36m
 ```
 
 ## Citation
