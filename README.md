@@ -10,17 +10,13 @@
 # Train a RegDA on RHD -> H3D task using PoseResNet.
 # Assume you have put the datasets under the path `data/RHD` and  `data/H3D_crop`, 
 # or you are glad to download the datasets automatically from the Internet to this path
-CUDA_VISIBLE_DEVICES=0 python regda.py data/RHD data/H3D_crop \
-    -s RenderedHandPose -t Hand3DStudio --seed 0 --debug --log logs/regda/rhd2h3d
+CUDA_VISIBLE_DEVICES=0 python regda.py data/RHD data/H3D_crop -s RenderedHandPose -t Hand3DStudio --seed 0 --log logs/regda/rhd2h3d
     
-CUDA_VISIBLE_DEVICES=1 python regda.py data/SURREAL data/LSP \
-    -s SURREAL -t LSP --seed 0 --debug --log logs/regda/surreal2lsp
+CUDA_VISIBLE_DEVICES=1 python regda.py data/SURREAL data/LSP -s SURREAL -t LSP --seed 0 --debug --log logs/regda/surreal2lsp
     
-CUDA_VISIBLE_DEVICES=2 python regda.py data/SURREAL data/Human36M \
-    -s SURREAL -t Human36M --seed 0 --debug --log logs/regda/surreal2human36m
+CUDA_VISIBLE_DEVICES=2 python regda.py data/SURREAL data/Human36M -s SURREAL -t Human36M --seed 0 --debug --log logs/regda/surreal2human36m
     
-CUDA_VISIBLE_DEVICES=3 python regda.py data/SynAnimal/Horse data/TigDog/Horse \
-    -s SynAnimalHorse -t TigDogHorse --seed 0 --debug --log logs/regda/horse
+CUDA_VISIBLE_DEVICES=3 python regda.py data/SynAnimal/Horse data/TigDog/Horse -s SynAnimalHorse -t TigDogHorse --seed 0 --log logs/regda/horse
     
 ```
 
