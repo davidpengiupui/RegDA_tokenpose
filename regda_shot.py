@@ -97,6 +97,7 @@ def main(args: argparse.Namespace):
     upsampling = Upsampling(backbone.out_features)
     num_keypoints = train_source_dataset.num_keypoints
     model = RegDAPoseResNet(backbone, upsampling, 256, num_keypoints, num_head_layers=args.num_head_layers, finetune=True).to(device)
+    model_old = RegDAPoseResNet(backbone, upsampling, 256, num_keypoints, num_head_layers=args.num_head_layers, finetune=True).to(device)
     # define loss function
     criterion = JointsKLLoss()
     pseudo_label_generator = PseudoLabelGenerator2d(num_keypoints, args.heatmap_size, args.heatmap_size)
@@ -147,6 +148,7 @@ def main(args: argparse.Namespace):
         # remove keys from pretrained dict that doesn't appear in model dict
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
         model.load_state_dict(pretrained_dict, strict=False)
+        model_old.load_state_dict(pretrained_dict, strict=False)
     else:
         # optionally resume from a checkpoint
         checkpoint = torch.load(args.resume, map_location='cpu')
@@ -192,13 +194,15 @@ def main(args: argparse.Namespace):
         print(lr_scheduler_f.get_lr(), lr_scheduler_h.get_lr(), lr_scheduler_h_adv.get_lr())
 
         # train for one epoch
-        train(train_source_iter, train_target_iter, model, criterion, regression_disparity,
+        model_old = train(train_source_iter, train_target_iter, model, model_old, criterion, regression_disparity,
               optimizer_f, optimizer_h, optimizer_h_adv, lr_scheduler_f, lr_scheduler_h, lr_scheduler_h_adv,
               epoch, visualize if args.debug else None, args)
 
         # evaluate on validation set
         source_val_acc = validate(val_source_loader, model, criterion, None, args)
         target_val_acc = validate(val_target_loader, model, criterion, visualize if args.debug else None, args)
+        source_val_acc = validate(val_source_loader, model_old, criterion, None, args)
+        target_val_acc = validate(val_target_loader, model_old, criterion, visualize if args.debug else None, args)
 
         # remember best acc and save checkpoint
         torch.save(
@@ -274,7 +278,7 @@ def pretrain(train_source_iter, model, criterion, optimizer,
             progress.display(i)
 
 
-def train(train_source_iter, train_target_iter, model, criterion,regression_disparity,
+def train(train_source_iter, train_target_iter, model, old_model, criterion,regression_disparity,
           optimizer_f, optimizer_h, optimizer_h_adv, lr_scheduler_f, lr_scheduler_h, lr_scheduler_h_adv,
           epoch: int, visualize, args: argparse.Namespace):
     batch_time = AverageMeter('Time', ':4.2f')
@@ -312,6 +316,7 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         data_time.update(time.time() - end)
 
         # Step A train all networks to minimize loss on source domain
+        '''
         optimizer_f.zero_grad()
         optimizer_h.zero_grad()
         optimizer_h_adv.zero_grad()
@@ -337,29 +342,60 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         loss_ground_truth = args.trade_off * regression_disparity(y_t, y_t_adv, weight_t, mode='min')
         loss_ground_truth.backward()
         optimizer_f.step()
+        '''
+        if args.iters_per_epoch >= 100:
+            y_t_o, _ = old_model(x_t)
+            label_t_p = pseudo_label_generator(y_t_o)
+            y_t = model(x_t)
+            loss_pseudo = criterion(y_t, label_t_p, weight_t)
+        else:
+            loss_pseudo = torch.tensor(0.0).to(device)
+            
+        y_t_flat = y_t.reshape((B, K, -1))
+        y_t_prob = nn.Softmax(dim=-1)(y_t_flat)
+        loss_ent = torch.sum(torch.mean(- y_t_prob * torch.log(y_t_prob), dim=0))
+        
+        y_mean_prob = torch.mean(y_t_prob, dim=0)
+        ent_mean = - y_mean_prob * torch.log(y_mean_prob)
+        loss_gen = torch.sum(ent_mean)
+        
+        loss_all = loss_pseudo - loss_ent + loss_gen
+        
+        optimizer_f.zero_grad()
+        optimizer_h.zero_grad()
+        
+        loss_all.backward()
+        
+        optimizer_f.step()
+        optimizer_h.step()
+        lr_scheduler_f.step()
+        lr_scheduler_h.step()
+        
 
         # do update step
+        '''
         model.step()
         lr_scheduler_f.step()
         lr_scheduler_h.step()
-        lr_scheduler_h_adv.step()
+        #lr_scheduler_h_adv.step()
+        '''
 
         # measure accuracy and record loss
-        _, avg_acc_s, cnt_s, pred_s = accuracy(y_s.detach().cpu().numpy(),
-                                               label_s.detach().cpu().numpy())
-        acc_s.update(avg_acc_s, cnt_s)
+        #_, avg_acc_s, cnt_s, pred_s = accuracy(y_s.detach().cpu().numpy(),
+        #                                       label_s.detach().cpu().numpy())
+        #acc_s.update(avg_acc_s, cnt_s)
         _, avg_acc_t, cnt_t, pred_t = accuracy(y_t.detach().cpu().numpy(),
                                                label_t.detach().cpu().numpy())
         acc_t.update(avg_acc_t, cnt_t)
-        _, avg_acc_s_adv, cnt_s_adv, pred_s_adv = accuracy(y_s_adv.detach().cpu().numpy(),
-                                               label_s.detach().cpu().numpy())
-        acc_s_adv.update(avg_acc_s_adv, cnt_s)
-        _, avg_acc_t_adv, cnt_t_adv, pred_t_adv = accuracy(y_t_adv.detach().cpu().numpy(),
-                                               label_t.detach().cpu().numpy())
-        acc_t_adv.update(avg_acc_t_adv, cnt_t)
-        losses_s.update(loss_s, cnt_s)
-        losses_gf.update(loss_ground_false, cnt_s)
-        losses_gt.update(loss_ground_truth, cnt_s)
+        #_, avg_acc_s_adv, cnt_s_adv, pred_s_adv = accuracy(y_s_adv.detach().cpu().numpy(),
+        #                                       label_s.detach().cpu().numpy())
+        #acc_s_adv.update(avg_acc_s_adv, cnt_s)
+        #_, avg_acc_t_adv, cnt_t_adv, pred_t_adv = accuracy(y_t_adv.detach().cpu().numpy(),
+        #                                       label_t.detach().cpu().numpy())
+        #acc_t_adv.update(avg_acc_t_adv, cnt_t)
+        #losses_s.update(loss_s, cnt_s)
+        #losses_gf.update(loss_ground_false, cnt_s)
+        #losses_gt.update(loss_ground_truth, cnt_s)
 
         # measure elapsed time
         batch_time.update(time.time() - end)
@@ -368,12 +404,14 @@ def train(train_source_iter, train_target_iter, model, criterion,regression_disp
         if i % args.print_freq == 0:
             progress.display(i)
             if visualize is not None:
-                visualize(x_s[0], pred_s[0] * args.image_size / args.heatmap_size, "source_{}_pred".format(i))
-                visualize(x_s[0], meta_s['keypoint2d'][0], "source_{}_label".format(i))
+                #visualize(x_s[0], pred_s[0] * args.image_size / args.heatmap_size, "source_{}_pred".format(i))
+                #visualize(x_s[0], meta_s['keypoint2d'][0], "source_{}_label".format(i))
                 visualize(x_t[0], pred_t[0] * args.image_size / args.heatmap_size, "target_{}_pred".format(i))
                 visualize(x_t[0], meta_t['keypoint2d'][0], "target_{}_label".format(i))
-                visualize(x_s[0], pred_s_adv[0] * args.image_size / args.heatmap_size, "source_adv_{}_pred".format(i))
-                visualize(x_t[0], pred_t_adv[0] * args.image_size / args.heatmap_size, "target_adv_{}_pred".format(i))
+                #visualize(x_s[0], pred_s_adv[0] * args.image_size / args.heatmap_size, "source_adv_{}_pred".format(i))
+                #visualize(x_t[0], pred_t_adv[0] * args.image_size / args.heatmap_size, "target_adv_{}_pred".format(i))
+    
+    return model
 
 
 def validate(val_loader, model, criterion, visualize, args: argparse.Namespace):
