@@ -105,10 +105,10 @@ def main(args: argparse.Namespace):
 
     # define optimizer and lr scheduler
     optimizer_f = SGD([
-        {'params': backbone.parameters(), 'lr': 0.1},
-        {'params': upsampling.parameters(), 'lr': 0.1},
-    ], lr=0.1, momentum=args.momentum, weight_decay=args.wd, nesterov=True)
-    optimizer_h = SGD(model.head.parameters(), lr=1., momentum=args.momentum, weight_decay=args.wd, nesterov=True)
+        {'params': backbone.parameters(), 'lr': 0.001},
+        {'params': upsampling.parameters(), 'lr': 0.01},
+    ], lr=0.01, momentum=args.momentum, weight_decay=args.wd, nesterov=True)
+    optimizer_h = SGD(model.head.parameters(), lr=0.1, momentum=args.momentum, weight_decay=args.wd, nesterov=True)
     optimizer_h_adv = SGD(model.head_adv.parameters(), lr=1., momentum=args.momentum, weight_decay=args.wd, nesterov=True)
     lr_decay_function = lambda x: args.lr * (1. + args.lr_gamma * float(x)) ** (-args.lr_decay)
     lr_scheduler_f = LambdaLR(optimizer_f, lr_decay_function)
